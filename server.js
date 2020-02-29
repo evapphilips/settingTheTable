@@ -6,6 +6,9 @@ const socket = require('socket.io');
 const mongoose = require('mongoose')
 
 const usersRouter = require('./routes/users.js')
+const participantsRouter = require('./routes/participants.js')
+const facilitatorsRouter = require('./routes/facilitators.js')
+const screensRouter = require('./routes/screens.js')
 
 
 // Connect to the database
@@ -20,6 +23,9 @@ app.use(express.json())
 // Setup Routing
 app.use(express.static('public'));
 app.use('/user', usersRouter)
+app.use('/participant', participantsRouter)
+app.use('/facilitator', facilitatorsRouter)
+app.use('/screen', screensRouter)
 
 
 // App setup
