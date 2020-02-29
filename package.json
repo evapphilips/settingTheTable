@@ -2,7 +2,7 @@
   "name": "datadinner",
   "version": "1.0.0",
   "description": "conversation facilitation tool",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
