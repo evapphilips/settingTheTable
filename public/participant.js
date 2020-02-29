@@ -1,5 +1,9 @@
+// Require libraries and files
+require('dotenv').config()
+
 // Start socket connection (frontend)
-var socket = io.connect("http://localhost:8080")
+var socket = io.connect(process.env.PORT )
+// var socket = io.connect("http://localhost:8080")
 
 // Store user type
 var type = "participant"
