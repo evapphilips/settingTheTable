@@ -30,6 +30,7 @@ app.use('/screen', screensRouter)
 
 // App setup
 const server = app.listen(process.env.PORT || 8080, function () {
+//const server = app.listen(8080, function () {
     console.log("Server is running")
 });
 
