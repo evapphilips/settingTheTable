@@ -18,6 +18,7 @@ const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('connected to database'))
 app.use(express.json())
+app.use(express.urlencoded({extended:true}));
 
 
 // Setup Routing
@@ -29,8 +30,8 @@ app.use('/screen', screensRouter)
 
 
 // App setup
-const server = app.listen(process.env.PORT || 8080, function () {
-//const server = app.listen(8080, function () {
+//const server = app.listen(process.env.PORT || 8080, function () {
+const server = app.listen(8080, function () {
     console.log("Server is running")
 });
 
