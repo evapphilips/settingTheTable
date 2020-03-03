@@ -19,49 +19,68 @@ router.get('/:id', getUser, (req, res) => {
   res.json(res.user)
 })
 
-// Create one user
-router.post('/', async (req, res) => {
+// Create a new participant
+router.post('/create_participant', async (req, res) => {
   const user = new User({
-    role: req.body.role,
+    role: 0,
     name: req.body.name,
-    hasPrepared: req.body.hasPrepared
+    tableCode: req.body.tableCode,
+    q1: req.body.q1,
+    q2: req.body.q2,
+    q3: req.body.q3,
   })
   try {
     const newUser = await user.save()
-    res.status(201).json(newUser)
+    res.status(201)
   } catch (err) {
-    res.status(400).json({ message: err.message })
+    res.status(400).json({message: err.message})
   }
 })
 
-// Update one user
-router.patch('/:id', getUser, async (req, res) => {
-  if (req.body.role != null) {
-    res.user.role = req.body.role
-  }
-  if (req.body.name != null) {
-    res.user.name = req.body.name
-  }
-  if (req.body.hasPrepared != null) {
-    res.user.hasPrepared = req.body.hasPrepared
-  }
-  try {
-    const updatedUser = await res.user.save()
-    res.json(updatedUser)
-  } catch {
-    res.status(400).json({ message: err.message })
-  }
-})
 
-// Delete one user
-router.delete('/:id', getUser, async (req, res) => {
-  try {
-    await res.user.remove()
-    res.json({ message: 'Deleted This User' })
-  } catch(err) {
-    res.status(500).json({ message: err.message })
-  }
-})
+// // Create one user
+// router.post('/', async (req, res) => {
+//   const user = new User({
+//     role: req.body.role,
+//     name: req.body.name,
+//     tableCode: req.body.tableCode
+//   })
+//   try {
+//     const newUser = await user.save()
+//     // res.status(201).json(newUser)
+//   } catch (err) {
+//     res.status(400).json({ message: err.message })
+//   }
+// })
+
+// // Update one user
+// router.patch('/:id', getUser, async (req, res) => {
+//   if (req.body.role != null) {
+//     res.user.role = req.body.role
+//   }
+//   if (req.body.name != null) {
+//     res.user.name = req.body.name
+//   }
+//   if (req.body.tableCode != null) {
+//     res.user.tableCode = req.body.tableCode
+//   }
+//   try {
+//     const updatedUser = await res.user.save()
+//     res.json(updatedUser)
+//   } catch {
+//     res.status(400).json({ message: err.message })
+//   }
+// })
+
+// // Delete one user
+// router.delete('/:id', getUser, async (req, res) => {
+//   try {
+//     await res.user.remove()
+//     res.json({ message: 'Deleted This User' })
+//   } catch(err) {
+//     res.status(500).json({ message: err.message })
+//   }
+// })
 
 // access specific user
 async function getUser(req, res, next) {

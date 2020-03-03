@@ -3,12 +3,14 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const socket = require('socket.io');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const usersRouter = require('./routes/users.js')
-const participantsRouter = require('./routes/participants.js')
-const facilitatorsRouter = require('./routes/facilitators.js')
-const screensRouter = require('./routes/screens.js')
+const tablesRouter = require('./routes/tables.js')
+const joinRouter = require('./routes/join.js')
+const prepareRouter = require('./routes/prepare.js')
+const facilitateRouter = require('./routes/facilitate.js')
+const presentRouter = require('./routes/present.js')
 
 
 // Connect to the database
@@ -23,10 +25,14 @@ app.use(express.urlencoded({extended:true}));
 
 // Setup Routing
 app.use(express.static('public'));
+// api routes
 app.use('/user', usersRouter)
-app.use('/participant', participantsRouter)
-app.use('/facilitator', facilitatorsRouter)
-app.use('/screen', screensRouter)
+app.use('/table', tablesRouter)
+// page routes
+app.use('/join', joinRouter)
+app.use('/prepare', prepareRouter)
+app.use('/facilitate', facilitateRouter)
+app.use('/present', presentRouter)
 
 
 // App setup

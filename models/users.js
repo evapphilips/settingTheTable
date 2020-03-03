@@ -5,16 +5,27 @@ const mongoose = require('mongoose')
 const userSchema = new mongoose.Schema({
     role: { // 0 is a participant, 1 is a facilitiator
        type: Number,
-       required: true 
+       required: false 
     },
     name: {
         type: String,
-        required: true
+        required: false
     },
-    hasPrepared: {
-        type: Boolean,
-        required: true,
-        default: false,
+    tableCode: {
+        type: String,
+        required: false
+    },
+    q1: {
+        type: String,
+        required: false
+    },
+    q2: {
+        type: String,
+        required: false
+    },
+    q3: {
+        type: String,
+        required: false
     }
 })
 

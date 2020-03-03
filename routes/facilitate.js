@@ -5,7 +5,7 @@ const router = express.Router()
 
 // Show Facilitators page
 router.get('/', async (req, res) => {
-    res.sendFile('facilitator.html', { root: path.join(__dirname, '../public') });
+    res.sendFile('facilitate.html', { root: path.join(__dirname, '../public') });
   })
 
   module.exports = router

@@ -3,9 +3,9 @@ const express = require('express')
 const path = require('path');
 const router = express.Router()
 
-// Show Participants page
+// Show Facilitators page
 router.get('/', async (req, res) => {
-    res.sendFile('participant.html', { root: path.join(__dirname, '../public') });
+    res.sendFile('prepare.html', { root: path.join(__dirname, '../public') });
   })
 
   module.exports = router
