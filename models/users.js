@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    // prepAnswers: {
+    //     type: Array,
+    //     required: false
+    // }
+
     q1: {
         type: String,
         required: false

@@ -12,9 +12,12 @@
 
 .container-section {
     width: 50%;
+    height: 400px;
     margin: 10px;
     padding: 10px;
     background-color: white;
+
+    position: relative;
 }
 
 .paging-container{
@@ -25,4 +28,15 @@
 
 .tab {
     display: none;
-  }
+}
+
+.plateImg {
+    width: 400px;
+    height: 400px;
+    /* stroke: none; */
+
+    stroke-width: 4px;
+    position: absolute;
+    top: 0;
+    
+}

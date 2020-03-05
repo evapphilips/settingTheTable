@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Data Dinner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
     <link href="/prepare.css" rel="stylesheet"/>
 </head>
 <body>
@@ -11,6 +12,7 @@
         <div class="container-section">
 
             <form id="prepForm" method="post" action="/user/create_participant">
+            <!-- <form id="prepForm" onSubmit={this.handleSubmit.bind(this)}> -->
                 <h4>Prepare Questions:</h4>
 
                 <div class="tab">User Info:
@@ -18,7 +20,8 @@
                     <p><input id="tableInput" placeholder="Table Code..." name="tableCode" required></p>
                 </div>
 
-                <div class="tab">Question 1: Pick a letter
+                <div class="tab">
+                    <p id=ques1>Question 1</p>
                     <br>
                     <input type="radio" name="q1" value="A">
                     <label for="A">A</label>
@@ -31,7 +34,8 @@
                     <br>
                 </div>
 
-                <div class="tab">Question 2: Pick a letter 
+                <div class="tab">
+                    <p id=ques2>Question 2</p>
                     <br>
                     <input type="radio" name="q2" value="A">
                     <label for="A">A</label>
@@ -44,7 +48,8 @@
                     <br>
                 </div>
 
-                <div class="tab">Question 3: Pick a letter
+                <div class="tab">
+                    <p id=ques3>Question 3</p>
                     <br>
                     <input type="radio" name="q3" value="A">
                     <label for="A">A</label>
@@ -56,7 +61,6 @@
                     <label for="C">C</label>
                     <br>
                 </div>
-              
                 <div class="paging-container">
                     <button type="button" id="prevBtn"> Previous</button>
                     <button type="button" id="nextBtn"> Next</button>
@@ -65,27 +69,18 @@
     </form>
 
         </div>
-        <div class="container-section">Plate Div</div>
+        <div class="container-section">
+            <div>
+                <svg class="plateImg" viewBox="0 0 304 303.6" stroke="none" fill="whitesmoke">
+                    <path class="st0" d="M300.4,152.6c6.8,54-7.7,90.6-59.2,110.8c-25.9,10.2-58.3,19.2-89.9,31.8C72.7,326.4-8.7,238.1,3.2,154.3c4.7-33.2,15.3-80.1,45.7-105.6C92.3,12.1,113.1-8.1,154.9,7.1c24.9,9,58.3,11.9,79,24.2C294.8,67.4,294.8,107.9,300.4,152.6z"></path>
+                </svg>
+                <svg class="plateImg" stroke="black" fill="none" viewBox="0 0 304 303.6">
+                    <path class="st0" d="M300.4,152.6c6.8,54-7.7,90.6-59.2,110.8c-25.9,10.2-58.3,19.2-89.9,31.8C72.7,326.4-8.7,238.1,3.2,154.3c4.7-33.2,15.3-80.1,45.7-105.6C92.3,12.1,113.1-8.1,154.9,7.1c24.9,9,58.3,11.9,79,24.2C294.8,67.4,294.8,107.9,300.4,152.6z"></path>
+                </svg>
+            </div>
+            
+        </div>
     </div>
-
-
-
-
-    
-
-
-
-    <!-- <form method="post" action="/user/create_participant">
-        <label>Username: </label>
-        <br>
-        <input type="text" name="name" placeholder="enter username..." required>
-        <br>
-        <br>
-        <label>Table Code: </label>
-        <br>
-        <input type="text" name="tableCode" placeholder="enter table code..." required>
-        <input type="submit" value="Submit">
-    </form> -->
 
     <script src="/prepare.js"></script>
 </body>

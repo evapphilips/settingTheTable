@@ -1,9 +1,11 @@
 // Require libraries and files
-require('dotenv').config()
 const express = require('express');
 const app = express();
 const socket = require('socket.io');
 const mongoose = require('mongoose');
+const config = require('./config');
+const PORT = config.PORT;
+const MONGODB_URI = config.MONGODB_URI;
 
 const usersRouter = require('./routes/users.js')
 const tablesRouter = require('./routes/tables.js')
@@ -15,7 +17,7 @@ const presentRouter = require('./routes/present.js')
 
 // Connect to the database
 //mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
-mongoose.connect(process.env.MONGODB_URI || process.env.DATABASE_URL, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('connected to database'))
@@ -36,8 +38,8 @@ app.use('/present', presentRouter)
 
 
 // App setup
-//const server = app.listen(process.env.PORT || 8080, function () {
-const server = app.listen(8080, function () {
+const server = app.listen(PORT, function () {
+//const server = app.listen(8080, function () {
     console.log("Server is running")
 });
 

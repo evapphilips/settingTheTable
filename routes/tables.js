@@ -22,13 +22,13 @@ router.get('/', async (req, res) => {
   // Create one table
   router.post('/', async (req, res) => {
       const table = new Table({
-          tableCode: req.body.tableCode,
-          prepQuestions: [
-              {
-              question1: req.body.prepQuestions.question1,
-              question2: req.body.prepQuestions.question2
-            }
-        ]
+          // tableCode: req.body.tableCode,
+          // prepQuestion1: req.body.prepQuestion1,
+          // prepQuestion2: req.body.prepQuestion2,
+          // prepQuestion3: req.body.prepQuestion3
+
+          // object destructuring
+          ...req.body
         })
         try {
             const newTable = await table.save()

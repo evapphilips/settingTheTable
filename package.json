@@ -4,7 +4,8 @@
   "description": "conversation facilitation tool",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development nodemon server.js"
   },
   "repository": {
     "type": "git",

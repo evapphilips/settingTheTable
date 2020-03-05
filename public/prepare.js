@@ -2,6 +2,14 @@
 var currentTab = 0;
 var currentNames = [];
 var currentTables = [];
+var prepQuestions = [];
+
+// Store svg paths
+var pathQues1 = ["", "", "", ""];
+var pathQues2 = ["", "", "", "", ""];
+var pathQues3 = ["", "", "", ""];
+
+
 
 // When page first loads, get a list of current user names and table names
 window.addEventListener('load', function () {
@@ -30,6 +38,7 @@ window.addEventListener('load', function () {
     })
 })
 
+// Registation completed
 // access name and table inputs
 var nameInput = document.getElementById('nameInput')
 var tableInput = document.getElementById('tableInput')
@@ -50,7 +59,15 @@ tableInput.addEventListener('blur', function (e) {
     currentTables.forEach((tableCode) => {
         if(tableCode === e.target.value){
             foundMatch = true;
-        }
+            // get the questions from the appropriate table
+            fetch('/table').then(result => {
+                return result.json();
+            }).then(result => {
+                prepQuestions = [result[0].prepQuestion1, result[0].prepQuestion2, result[0].prepQuestion3]
+            }).catch(err => {
+                return err;
+            })
+            }
     })
     if(nameInput.value !== ""){
         document.getElementById("nextBtn").disabled = false;
@@ -71,6 +88,15 @@ var prevBtn = document.getElementById('prevBtn')
 // preform action on click
 nextBtn.addEventListener('click', () => {nextPrev(1);});
 prevBtn.addEventListener('click', () => {nextPrev(-1);});
+
+// // When submit is pressed
+// function handleSubmit(e) {
+//     e.preventDefault();
+//     alert("did not reload!")
+//     // e.target.submit(); // to submit form
+
+// }
+
 
 
 
@@ -103,6 +129,12 @@ function showTab(n) {
     var tab = document.getElementsByClassName("tab");
     // show the approriate tab
     tab[n].style.display = "block";
+
+    // show appropriate questions based on the table name
+    if(n>0){
+        var id = "ques" + n;
+        document.getElementById(id).innerHTML = prepQuestions[n-1];
+    }
 
     // show the prev/next buttons
     if(n==0){

@@ -7,14 +7,19 @@ const tableSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    prepQuestions: {
-        type: Array,
-        required: true,
-        details: [{
-            question1: String,
-            question2: String
-        }]   
-    }      
+    prepQuestion1: {
+        type: String,
+        required: true
+    },
+    prepQuestion2: {
+        type: String,
+        required: true
+    },
+    prepQuestion3: {
+        type: String,
+        required: true
+    },
+    
 })
 
 // Export user schema
