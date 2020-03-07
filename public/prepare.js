@@ -1,7 +1,5 @@
 // Local variables
 var currentTab = 0;
-var currentNames = [];
-var currentTables = [];
 var prepQuestions = [];
 
 // Store svg paths
@@ -37,74 +35,49 @@ var q7Symbol = ["10", "20", "30", "40"];
 var ans = ["", "", "", "", "", "", ""];
 
 
-// When page first loads, get a list of current user names and table names
-window.addEventListener('load', function () {
-    // user names
-    fetch('/user').then(result => {
-        return result.json();
-    }).then(result => {
-        result.forEach((user) => {
-            // add to currentNames array
-            currentNames.push(user.name)
-        })
-    }).catch(err => {
-        return err;
-    })
-
-    // table names
-    fetch('/table').then(result => {
-        return result.json();
-    }).then(result => {
-        result.forEach((table) => {
-            // add to currentNames array
-            currentTables.push(table.tableCode)
-        })
-    }).catch(err => {
-        return err;
-    })
-})
-
-// Registation completed
-// access name and table inputs
+// When completing registration
+// when name is completed
 var nameInput = document.getElementById('nameInput')
-var tableInput = document.getElementById('tableInput')
-// When name is completed
 nameInput.addEventListener('blur', function (e) {
-    currentNames.forEach((name) => {
-        if(name === e.target.value){
+    // check is name has already been taken
+    fetch('/user/check/' + e.target.value).then(result => result.json()).then(data => {
+        // if the name is already taken
+        if(data.message === "failure"){
             alert("Uh oh! That name has already been used.  Try a different username.");
+        }else{
+            // if the name is not taken
+            // check is the next button should still be disabled
+            if(document.getElementById('tableInput').value !== "" ){
+                document.getElementById("nextBtn").disabled = false;
+            }
+            return
         }
+    }).catch(err => {
+        return err
     })
-    if(document.getElementById('tableInput').value !== "" ){
-        document.getElementById("nextBtn").disabled = false;
-    }
 })
 // When table is completed
+var tableInput = document.getElementById('tableInput')
 tableInput.addEventListener('blur', function (e) {
-    var foundMatch = false;
-    currentTables.forEach((tableCode) => {
-        if(tableCode === e.target.value){
-            foundMatch = true;
-            // get the questions from the appropriate table
-            fetch('/table').then(result => {
-                return result.json();
-            }).then(result => {
-                prepQuestions = [result[0].prepQuestion1, result[0].prepQuestion2, result[0].prepQuestion3, result[0].prepQuestion4, result[0].prepQuestion5, result[0].prepQuestion6, result[0].prepQuestion7]
-            }).catch(err => {
-                return err;
-            })
+    // check is there is a table by that name
+    fetch('/table/check/' + e.target.value).then(result => result.json()).then(data => {
+        // if the table does not exist
+        if(data.message === "failure"){
+            alert("Uh oh! There are no tables with that code.  Check that you have the correct table code.");
+        }else{
+            // if the table exists, get the doc
+            prepQuestions = [data.doc.prepQuestion1, data.doc.prepQuestion2, data.doc.prepQuestion3, data.doc.prepQuestion4, data.doc.prepQuestion5, data.doc.prepQuestion6, data.doc.prepQuestion7]
+            if(nameInput.value !== ""){
+                document.getElementById("nextBtn").disabled = false;
             }
+        }
+    }).catch(err => {
+        return err
     })
-    if(nameInput.value !== ""){
-        document.getElementById("nextBtn").disabled = false;
-    }
-    if(!foundMatch){
-        alert("Uh oh! There are not tables with that code.  Check that you have the correct table code.");
-    }
 })
 
 
-// Page through pre questions
+// Page through prepare questions
 // Display the current tab
 showTab(currentTab);
 // When user clicks on next/prev button, page
@@ -116,20 +89,17 @@ nextBtn.addEventListener('click', () => {nextPrev(1);});
 prevBtn.addEventListener('click', () => {nextPrev(-1);});
 
 
-
-// When submit is pressed post new user to users db collection
+// When submit is pressed, post new user to users collection
 var prepSubmitBtn = document.getElementById("prepSubmitBtn")
 prepSubmitBtn.addEventListener("click", (e) => {
-
-    // get plate svg source
+    // make a plate svg source
     var html = d3.select(".plateContainer")
         .attr("version", 1.1)
         .attr("xmlns", "http://www.w3.org/2000/svg")
         .node().parentNode.innerHTML;
     var imgsrc = 'data:image/svg+xml;base64,'+ btoa(html);
-    // console.log(String(imgsrc))
 
-
+    // make new entry
     const newEntry = {
         role: 0,
         name: document.getElementById('nameInput').value,
@@ -137,7 +107,6 @@ prepSubmitBtn.addEventListener("click", (e) => {
         prepAnswers: ans,
         plateSvg: String(imgsrc)
     }
-
     const options ={
         method: "POST",
         redirect: "follow",
@@ -146,10 +115,10 @@ prepSubmitBtn.addEventListener("click", (e) => {
         },
             body:JSON.stringify(newEntry)
         }
-
-    fetch('/user/create_participant', options).then(result => {
-        // return result.json()
-        console.log(result.json())
+    // create new user post
+    fetch('/user/create', options).then(result => result.json()).then(data => {
+        console.log(data.message) // LATER I WILL WANT TO PAGE TO THE LAST THANK YOU TAB HERE
+        return
     }).catch(err => {
         return err
     })
