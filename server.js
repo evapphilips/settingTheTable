@@ -43,45 +43,73 @@ const server = app.listen(PORT, function () {
     console.log("Server is running")
 });
 
-
 // Socket setup (backend)
 var io = socket(server);
-var facId = "";
-var scrId = "";
+// var facId = "";
+// var scrId = "";
+var connectedUsers = [];
+var connectedSockets = [];
 // When the a socket connection is made
 io.on('connection', function (socket) {
+
+    // when a user first connects
     console.log("a new user has connected, id: ", socket.id);
-
-    // When first connecting, check if client is the facilitator or screen and store their id
-    socket.on('sendType', (data) => {
-        if(data.type === "facilitator"){
-            facId = socket.id
-        }
-        if(data.type === "screen"){
-            scrId = socket.id
-        }
+    // update connectedUsers array
+    socket.on('connectUser', (data) => {
+    connectedUsers.push(data)
+    connectedSockets.push(socket.id)
     })
 
-    // Recieve data from client
-
-    // Recieve position
-    socket.on('position', (data) => {
-        // console.log(data)
-        // send data to just the screen
-        io.to(scrId).emit('position', data)
+    // Recieve a new question submission
+    socket.on('submitNewQuestion', (data) => {
+        console.log("got a new question: ", data);
     })
 
-    // Recieve a new question
-    socket.on('newQuestion', (data) => {
-        console.log("got a question from a participant: ", data)
-        // send data to just the facilitator
-        io.to(facId).emit('newQuestion', data)
-    })
 
-    // Recieve a question to send
-    socket.on('sendQuestion', (data) => {
-        console.log("got a question to send to everyone: " + data)
-        // send data to all other clients
-        socket.broadcast.emit('sendQuestion', data)
-    })
+
+
+
+
+
+    // // When first connecting, check if client is the facilitator or screen and store their id
+    // socket.on('sendType', (data) => {
+    //     if(data.type === "facilitator"){
+    //         facId = socket.id
+    //     }
+    //     if(data.type === "screen"){
+    //         scrId = socket.id
+    //     }
+    // })
+
+    // // Recieve data from client
+
+    // // Recieve position
+    // socket.on('position', (data) => {
+    //     // console.log(data)
+    //     // send data to just the screen
+    //     io.to(scrId).emit('position', data)
+    // })
+
+    // // Recieve a new question
+    // socket.on('newQuestion', (data) => {
+    //     console.log("got a question from a participant: ", data)
+    //     // send data to just the facilitator
+    //     io.to(facId).emit('newQuestion', data)
+    // })
+
+    // // Recieve a question to send
+    // socket.on('sendQuestion', (data) => {
+    //     console.log("got a question to send to everyone: " + data)
+    //     // send data to all other clients
+    //     socket.broadcast.emit('sendQuestion', data)
+    // })
+
+    // When a client disconnects
+	socket.on('disconnect', function() {
+        console.log("Client has disconnected " + socket.id);
+        // remove from current users lists
+        connectedUsers.splice(connectedSockets.indexOf(socket.id), 1)
+        connectedSockets.splice(connectedSockets.indexOf(socket.id), 1)
+
+	});
 })

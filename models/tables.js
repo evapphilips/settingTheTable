@@ -5,21 +5,36 @@ const mongoose = require('mongoose')
 const tableSchema = new mongoose.Schema({
     tableCode: {
         type: String,
-        required: true
+        required: false
     },
     prepQuestion1: {
         type: String,
-        required: true
+        required: false
     },
     prepQuestion2: {
         type: String,
-        required: true
+        required: false
     },
     prepQuestion3: {
         type: String,
-        required: true
+        required: false
     },
-    
+    prepQuestion4: {
+        type: String,
+        required: false
+    },
+    prepQuestion5: {
+        type: String,
+        required: false
+    },
+    prepQuestion6: {
+        type: String,
+        required: false
+    },
+    prepQuestion7: {
+        type: String,
+        required: false
+    }
 })
 
 // Export user schema

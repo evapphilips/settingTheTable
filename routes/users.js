@@ -22,23 +22,13 @@ router.get('/:id', getUser, (req, res) => {
 // Create a new participant
 router.post('/create_participant', async (req, res) => {
   const user = new User({
-    // role: 0,
-    // name: req.body.name,
-    // tableCode: req.body.tableCode,
-    // // prepAnswers: [],
-    // q1: req.body.q1,
-    // q2: req.body.q2,
-    // q3: req.body.q3,
     ...req.body
   })
   try {
     const newUser = await user.save()
     // send a success message
     res.status(201).json({message: "success"})
-    //res.status(201).location.replace('/prepare')
     // res.status(201).json(newUser)
-    // res.status(201).json(... json object message ...)
-    // if you need to, can redirect to a diff page
 
   } catch (err) {
     res.status(400).json({message: err.message})
@@ -80,15 +70,15 @@ router.post('/create_participant', async (req, res) => {
 //   }
 // })
 
-// // Delete one user
-// router.delete('/:id', getUser, async (req, res) => {
-//   try {
-//     await res.user.remove()
-//     res.json({ message: 'Deleted This User' })
-//   } catch(err) {
-//     res.status(500).json({ message: err.message })
-//   }
-// })
+// Delete one user
+router.delete('/:id', getUser, async (req, res) => {
+  try {
+    await res.user.remove()
+    res.json({ message: 'Deleted This User' })
+  } catch(err) {
+    res.status(500).json({ message: err.message })
+  }
+})
 
 // access specific user
 async function getUser(req, res, next) {

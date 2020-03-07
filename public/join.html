@@ -4,10 +4,75 @@
     <meta charset="UTF-8">
     <title>Data Dinner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <link href="/styles.css" rel="stylesheet"/>
+    <link href="/join.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="form-container">
+    <div class="container">
+        <div class="container-section">
+            <form id="joinForm">
+                <h4>Login to join the table</h4>
+
+                <div class="tab">
+                    <br>
+                    <p><input id="nameInput" placeholder="Username..." name="name" required></p>
+                    <p><input id="tableInput" placeholder="Table Code..." name="tableCode" required></p>
+                    <br>
+                </div>
+
+                <div class="tab">
+                    <p id=ques1>Question 1</p>
+                    <br>
+                    <input id=q11 type="radio" name="q1" value="A">
+                    <label for="A">logical & understanding</label>
+                    <br>
+                    <input id=q12 type="radio" name="q1" value="B">
+                    <label for="B">reserved & introspective</label>
+                    <br>
+                    <input id=q13 type="radio" name="q1" value="C">
+                    <label for="C">outspoken & unshakable</label>
+                    <br>
+                    <input id=q14 type="radio" name="q1" value="D">
+                    <label for="D">compassionate & empathetic</label>
+                    <br>
+                </div>
+
+                <button type="button" id="loginBtn">login</button>
+                <button type="button" id="answerBtn" style="visibility: hidden;">submit</button>
+            </form>
+        </div>
+
+        <div class="container-section">
+            <button id="askBtn" disabled>submit a question</button>
+        </div>
+
+        <div id="askModal" class="modal">
+            <div class="modal-content">
+              <span id="closeModal" class="close">&times;</span>
+              <form id=>
+
+              </form id="askForm">
+                <h4>Type a question:</h4>
+                <br>
+                <input id="inputQues" placeholder="(required)" required>
+                <br>
+                <br>
+                <h4>Add answer options:</h4>
+                <br>
+                <input class="inputOpt" placeholder="(required)" required>
+                <input class="inputOpt" placeholder="(required)" required>
+                <input class="inputOpt" placeholder="(optional)" required>
+                <input class="inputOpt" placeholder="(optional)" required>
+                <input class="inputOpt" placeholder="(optional)" required>
+                <br>
+                <button type="button" id="submitAskBtn">submit</button>
+              </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="form-container">
         <form action="#" id="form">
             <p class="form-question">
                 Select an option to move your symbol on the main screen
@@ -31,11 +96,7 @@
         </p>
         <input id="question" type="text">
         <input id="send-button" type="button" value="send">
-
-<!-- 
-        <input id="myInput" value="Some text..">
-<button id="myBtn" onclick="javascript:alert('Hello World!')">Button</button> -->
-    </div>
+    </div> -->
 
     <script src="/join.js"></script>
 </body>

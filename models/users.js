@@ -15,23 +15,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    // prepAnswers: {
-    //     type: Array,
-    //     required: false
-    // }
-
-    q1: {
-        type: String,
+    prepAnswers: {
+        type: Array,
         required: false
     },
-    q2: {
-        type: String,
-        required: false
-    },
-    q3: {
-        type: String,
+    plateSvg:  { 
+        type: String, 
         required: false
     }
+    // plateSvg:  { 
+    //     data: Buffer, 
+    //     contentType: String 
+    // }
 })
 
 // Export user schema
