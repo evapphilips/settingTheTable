@@ -2,7 +2,6 @@
 var socket;
 var currentTab = 0;
 var type = 0; // This client is a participant (0)
-// var userList = [];
 var currentUser = {};
 
 // When page first loads, display the login tab
@@ -28,7 +27,7 @@ loginBtn.addEventListener("click", (e) => {
                 // send socket user information
                 socket.emit('connectPart', {
                     type: type,
-                    info: currentUser
+                    id: currentUser._id
                 })
                 // change to next tab
                 nextPrev(1)
@@ -39,6 +38,17 @@ loginBtn.addEventListener("click", (e) => {
             }
         })
     }
+})
+
+// Answer form submitted
+document.getElementById('answerBtn').addEventListener('click', () => {
+    console.log(currentUser._id)
+    // when submit is clicked, send the server users answer
+    socket.emit('sendCurrentAns', {
+        _id: currentUser._id,
+        currentAnswer: document.getElementById('joinForm').elements["currentAnswer"].value
+    })
+    console.log(document.getElementById('joinForm').elements["currentAnswer"].value)
 })
 
 

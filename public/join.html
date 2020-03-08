@@ -10,9 +10,11 @@
     <div class="container">
         <div class="container-section">
             <form id="joinForm">
-                <h4>Login to join the table</h4>
+                <h4>Join the table</h4>
 
                 <div class="tab">
+                    <br>
+                    <p>Login to join the table</p>
                     <br>
                     <p><input id="nameInput" placeholder="Username..." name="name" required></p>
                     <p><input id="tableInput" placeholder="Table Code..." name="tableCode" required></p>
@@ -20,20 +22,26 @@
                 </div>
 
                 <div class="tab">
-                    <p id=ques1>Question 1</p>
                     <br>
-                    <input id=q11 type="radio" name="q1" value="A">
-                    <label for="A">logical & understanding</label>
+                    <p>Current Question</p>
                     <br>
-                    <input id=q12 type="radio" name="q1" value="B">
-                    <label for="B">reserved & introspective</label>
-                    <br>
-                    <input id=q13 type="radio" name="q1" value="C">
-                    <label for="C">outspoken & unshakable</label>
-                    <br>
-                    <input id=q14 type="radio" name="q1" value="D">
-                    <label for="D">compassionate & empathetic</label>
-                    <br>
+                    <div>
+                        <input type="radio" name="currentAnswer" value="A">
+                        <label for="A">A</label>
+                        <br>
+                        <input type="radio" name="currentAnswer" value="B">
+                        <label for="B">B</label>
+                        <br>
+                        <input type="radio" name="currentAnswer" value="C">
+                        <label for="C">C</label>
+                        <br>
+                        <input type="radio" name="currentAnswer" value="D">
+                        <label for="D">D</label>
+                        <br>
+                        <input type="radio" name="currentAnswer" value="D">
+                        <label for="D">E</label>
+                        <br>
+                    </div>   
                 </div>
 
                 <button type="button" id="loginBtn">login</button>

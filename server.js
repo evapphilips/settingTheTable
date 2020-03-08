@@ -45,19 +45,41 @@ const server = app.listen(PORT, function () {
 
 // App socket setup (backend)
 var io = socket(server);
-var connectedParts = []; // keep a list of the participants who are connected
+var connectedPartsId = []; // keep a list of the participants _id who are connected
 var connectedPartsSockets = []; // keep a list of the participants socket ids who are connected
+var connectedScrSocket = ""; // keep the socket id of the screen client
 // When the a socket connection is made
 io.on('connection', function (socket) {
 
     // when a client first connects
     console.log("a new client has connected, id: ", socket.id);
 
-    // when a new participants connects, update connectedParts & connectedPartsSockets arrays
+    // when a new participants connects, update connectedPartsId & connectedPartsSockets arrays
     socket.on('connectPart', (data) => {
-    connectedParts.push(data)
-    connectedPartsSockets.push(socket.id)
-    console.log(connectedParts)
+        // update connectedParts
+        connectedPartsId.push(data.id)
+        connectedPartsSockets.push(socket.id)
+        // send screen this participants _id if a screen is connected
+        if(connectedScrSocket !== ""){
+            io.to(connectedScrSocket).emit('shareConnectedPartId', data.id)
+        }
+    })
+
+    // when a new screen connects, check that there is no other screen client connect and update connectedScrSocket
+    socket.on('connectScr', (data) => {
+        if(connectedScrSocket === ""){ // if no other screen clients are connected, updated connectedScrSocket
+            // send success message
+            io.to(socket.id).emit('checkConnectScr', "success")
+            // update connectedScrSocket
+            connectedScrSocket = socket.id
+            // send screen a list of the current participant _id's
+            connectedPartsId.forEach((id) => {
+                io.to(socket.id).emit('shareConnectedPartId', id)
+            })
+        }else{ // if there is already a screen client, disconnect and send alert
+            // send failure message
+            io.to(socket.id).emit('checkConnectScr', "failure")
+        }
     })
 
     // recieve a new question submission from a participant
@@ -65,14 +87,31 @@ io.on('connection', function (socket) {
         console.log("got a new question with id: ", data);
     })
 
+    // recieve answer for the current question from a participant
+    socket.on('sendCurrentAns', (data) => {
+        console.log("Recieved answer " + data.currentAnswer + " from user: " + data._id)
+    })
+
+
     // when a client disconnects
 	socket.on('disconnect', function() {
         console.log("Client has disconnected " + socket.id);
 
         // if the client is a participant, remove them currentParts lists
         if(connectedPartsSockets.indexOf(socket.id) !== -1){
-            connectedParts.splice(connectedPartsSockets.indexOf(socket.id), 1)
+            // tell screen to remove
+            if(connectedScrSocket !== ""){
+                io.to(connectedScrSocket).emit('shareDisconnectedPartId', connectedPartsId[connectedPartsSockets.indexOf(socket.id)])
+            }
+            // remove
+            connectedPartsId.splice(connectedPartsSockets.indexOf(socket.id), 1)
             connectedPartsSockets.splice(connectedPartsSockets.indexOf(socket.id), 1)
+            
+        }
+
+        // if the client is a screen, remove them from the connectedScr list
+        if(socket.id === connectedScrSocket){
+            connectedScrSocket = ""
         }
 	});
 })

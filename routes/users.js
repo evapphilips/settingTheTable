@@ -48,7 +48,7 @@ router.post('/create', async (req, res) => {
   }
 })
 
-// Find a specific user
+// Find a specific user by name and code
 router.get('/find/:name/:code', (req, res) => {
   try {
     const user = User.findOne({"name": req.params.name, "tableCode": req.params.code}, (err, doc) => {
@@ -61,6 +61,23 @@ router.get('/find/:name/:code', (req, res) => {
       return err
     })
   } catch(err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+// Find a specific user by _id
+router.get('/find/:id', (req, res) => {
+  try{
+    const user = User.findOne({"_id": req.params.id}, (err, doc) => {
+      if(!doc){
+        res.json({message: "failure"}) // failure if that user _id does not exist
+      }else {
+        res.json({message: "success", src: doc.plateSvg}) // success if that user _id does exist
+      }
+    }).catch(err => {
+      return err
+    })
+  } catch(err){
     res.status(500).json({ message: err.message })
   }
 })
