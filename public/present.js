@@ -49,6 +49,37 @@ socket.on('shareDisconnectedPartId', (data) => {
     d3.select(".plateContainer").selectAll('#pl' + data).remove()
 })
 
+// Recieve a new current question 
+socket.on('changeCurrentQuestion', (data) => {
+    // get the current question details fromt he submissions db
+    fetch('/submission/find/' + data).then(result => result.json()).then(d => {
+        // change the current question
+        document.getElementById('currentQuestion').innerHTML = d.question[0]
+        // show the options
+        document.getElementById('currentOptions').style.display = "block"
+        // change the options
+        console.log(d.question)
+        for(let i=1; i<d.question.length; i++){
+            if(d.question[i] !== ""){
+                var id = "o" + i;
+                var option = document.getElementById(id);
+                option.style.display = "inline-block"
+                option.innerText = d.question[i];
+            }else{
+                var id = "o" + i;
+                document.getElementById(id).style.display = "none"
+            }
+        }
+    })
+})
+
+// Recieve a clear from the facilitator
+socket.on('clearCurrentQustion', (data) => {
+    // clear question and remove options
+    document.getElementById('currentQuestion').innerHTML = "waiting for next question"
+    document.getElementById('currentOptions').style.display = "none"
+})
+
 
 
 

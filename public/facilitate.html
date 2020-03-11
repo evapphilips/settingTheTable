@@ -4,11 +4,27 @@
     <meta charset="UTF-8">
     <title>Data Dinner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <link href="/styles.css" rel="stylesheet"/>
+    <link href="/facilitate.css" rel="stylesheet"/>
 </head>
 <body>
     <h1 id=questionTitle>Facilitator Page</h1>
-    <button id="sendButton">Send question to particpants & screen</button>
+
+    <div>
+        <button id="clearBtn">clear</button>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <!-- <span id="closeModal" class="close">&times;</span> -->
+            </form id="tableForm">
+                <h4><b>Enter the table code for the table you would like to facilitate</b></h4>
+                <p><input id="tableInput" placeholder="Table Code..." name="tableCode" required></p>
+                <button type="button" id="loginBtn">login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="submissionContainer"></div>
 
     <script src="/facilitate.js"></script>
 </body>

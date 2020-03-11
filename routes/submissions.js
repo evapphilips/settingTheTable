@@ -28,6 +28,30 @@ router.post('/create', async (req, res) => {
   }
 })
 
+// Get all submission for a particular table
+router.get('/:code', async (req, res) => {
+  try {
+    Submission.find({"tableCode": req.params.code}, (err, doc) => {
+      // if none exist yet
+      if(doc.length === 0){
+        res.json({message: "empty"})  // empty if there are no submissions for the table
+      }else{
+        // if some exist
+        res.json({message: "success", submissions: doc}) // success if there are some submissions for the table
+      } 
+    }).catch(err => {
+      return err
+    })
+  } catch(err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+// Get one submission for a particular table
+router.get('/find/:id', getSubmission, (req, res) => {
+  res.json(res.submission)
+})
+
 
 //////////////// Helper Functions /////////////////////
 // access specific submission
@@ -46,3 +70,17 @@ async function getSubmission(req, res, next) {
   }
   
   module.exports = router
+
+
+
+
+  // TO DELETE LATER
+  // // Delete one user
+router.delete('/:id', getSubmission, async (req, res) => {
+  try {
+    await res.submission.remove()
+    res.json({ message: 'Deleted This submission' })
+  } catch(err) {
+    res.status(500).json({ message: err.message })
+  }
+})

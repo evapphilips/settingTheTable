@@ -48,6 +48,7 @@ var io = socket(server);
 var connectedPartsId = []; // keep a list of the participants _id who are connected
 var connectedPartsSockets = []; // keep a list of the participants socket ids who are connected
 var connectedScrSocket = ""; // keep the socket id of the screen client
+var connectedFacSocket = ""; // keep the socket id of the facilitator client
 // When the a socket connection is made
 io.on('connection', function (socket) {
 
@@ -82,10 +83,46 @@ io.on('connection', function (socket) {
         }
     })
 
+    // when a new facilitator connects, check that there is no other facilitator connected and updated connectedFacSocket
+    socket.on('connectFac', (data) => {
+        if(connectedFacSocket === ""){ // if no other facilitator clients are connected, updated connectedFacSocket
+            // send success message
+            io.to(socket.id).emit('checkConnectFac', "success")
+            // update connectedFacSocket
+            connectedFacSocket = socket.id
+        }else{ // if there is already a fac client, disconnect and send alert
+            // send failure message
+            io.to(socket.id).emit('checkConnectFac', "failure")
+
+        }
+    })
+
     // recieve a new question submission from a participant
     socket.on('submitNewQuestion', (data) => {
         console.log("got a new question with id: ", data);
+        // if there is a facilitator, send a message to the facilitator with the new question
+        if(connectedFacSocket !== ""){
+            io.to(connectedFacSocket).emit('newSubmissionAdded', data)
+        }
+        
     })
+
+    // recieve a question to share from facilitator
+    socket.on('shareQuestion', (data) => {
+        console.log("new question to share: ", data);
+        // send the question id to the participants and the main screen
+        socket.broadcast.emit('changeCurrentQuestion', data);
+    })
+
+    // recieved a clear to share from facilitator
+    socket.on('clearQuestion', (data) => {
+        console.log("clear current question")
+        // send a message to clear to the participants and the main screen
+        socket.broadcast.emit('clearCurrentQustion', data)
+    })
+
+
+
 
     // recieve answer for the current question from a participant
     socket.on('sendCurrentAns', (data) => {
@@ -109,9 +146,14 @@ io.on('connection', function (socket) {
             
         }
 
-        // if the client is a screen, remove them from the connectedScr list
+        // if the client is a screen, remove them from them connectedScr list
         if(socket.id === connectedScrSocket){
             connectedScrSocket = ""
+        }
+
+        // if the client is a facilitator, remove them from them connectedFac list
+        if(socket.id === connectedFacSocket){
+            connectedFacSocket = ""
         }
 	});
 })

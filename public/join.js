@@ -35,6 +35,42 @@ loginBtn.addEventListener("click", (e) => {
                 document.getElementById('answerBtn').style.visibility = "visible"
                 // make ask button available
                 document.getElementById('askBtn').disabled = false;
+
+                // Recieve a new current question
+                socket.on('changeCurrentQuestion', (data) => {
+                    // get the current question details fromt he submissions db
+                    fetch('/submission/find/' + data).then(result => result.json()).then(d => {
+                        // change the current question
+                        document.getElementById('currentQuestion').innerHTML = d.question[0]
+                        // show the options
+                        document.getElementById('currentOptions').style.display = "block"
+                        // change the options
+                        for(let i=1; i<d.question.length; i++){
+                            if(d.question[i] !== ""){
+                                var id1 = "o" + i;
+                                var id2 = "l" + i;
+                                var option = document.getElementById(id1);
+                                document.getElementById(id1).style.display = "inline-block"
+                                document.getElementById(id2).style.display = "inline-block"
+                                option.innerHTML = d.question[i];
+
+                            }else{
+                                var id1 = "o" + i;
+                                var id2 = "l" + i;
+                                document.getElementById(id1).style.display = "none"
+                                document.getElementById(id2).style.display = "none"
+                            }
+                        }
+                    })
+                    
+                })
+
+                // Recieve a clear from the facilitator
+                socket.on('clearCurrentQustion', (data) => {
+                    // clear question and remove options
+                    document.getElementById('currentQuestion').innerHTML = "waiting for next question"
+                    document.getElementById('currentOptions').style.display = "none"
+                })
             }
         })
     }
@@ -57,6 +93,7 @@ var askBtn = document.getElementById('askBtn')
 askBtn.addEventListener("click", () => {
     document.getElementById("askModal").style.display = "block";
 })
+// Close modal
 document.getElementById('closeModal').addEventListener("click", () => {
     document.getElementById("askModal").style.display = "none";
 })
