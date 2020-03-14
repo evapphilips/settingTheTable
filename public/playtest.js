@@ -54,6 +54,7 @@ socket.on('shareNewUser', (data) => {
         .attr('cx', 0)
         .attr('cy', Math.random() * 300)
         .attr('r', 10)
+        .attr("opacity", ".5")
 })
 
 // Recieve a user that disconnected
