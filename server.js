@@ -15,6 +15,10 @@ const prepareRouter = require('./routes/prepare.js')
 const facilitateRouter = require('./routes/facilitate.js')
 const presentRouter = require('./routes/present.js')
 
+/////////////////////////////// PLAYTEST ///////////////////////////////////////////
+const playtestRouter = require('./routes/playtest.js')
+/////////////////////////////// PLAYTEST ///////////////////////////////////////////
+
 
 // Connect to the database
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
@@ -37,6 +41,11 @@ app.use('/prepare', prepareRouter)
 app.use('/facilitate', facilitateRouter)
 app.use('/present', presentRouter)
 
+/////////////////////////////// PLAYTEST ///////////////////////////////////////////
+app.use('/playtest', playtestRouter)
+/////////////////////////////// PLAYTEST ///////////////////////////////////////////
+
+
 // App server setup
 const server = app.listen(PORT, function () {
 //const server = app.listen(8080, function () {
@@ -49,11 +58,43 @@ var connectedPartsId = []; // keep a list of the participants _id who are connec
 var connectedPartsSockets = []; // keep a list of the participants socket ids who are connected
 var connectedScrSocket = ""; // keep the socket id of the screen client
 var connectedFacSocket = ""; // keep the socket id of the facilitator client
+/////////////////////////////// PLAYTEST ///////////////////////////////////////////
+var connectedPlaySockets = [];
+/////////////////////////////// PLAYTEST ///////////////////////////////////////////
 // When the a socket connection is made
 io.on('connection', function (socket) {
 
     // when a client first connects
     console.log("a new client has connected, id: ", socket.id);
+
+    /////////////////////////////// PLAYTEST ///////////////////////////////////////////
+    socket.on('connectPlay', (data) => {
+        // add to connected play sockets array
+        connectedPlaySockets.push(socket.id)
+        console.log(connectedPlaySockets)
+
+        // send this user the exisiting sockets
+        connectedPlaySockets.forEach((user) => {
+            socket.emit('shareNewUser', user)
+        })
+        
+        // send new user to other playtesters
+        socket.broadcast.emit('shareNewUser', socket.id)
+
+        // send this user their socket id
+        socket.emit('shareMyId', socket.id)
+    })
+
+    socket.on('updateCircle', (data) => {
+        socket.broadcast.emit("shareUpdateCircle", data)
+    })
+
+    socket.on('formPlayComplete', (data) => {
+        // send form complete to everyone
+        socket.broadcast.emit('sharePlayQuestion', data)
+        socket.emit('sharePlayQuestion', data)
+    })
+    /////////////////////////////// PLAYTEST ///////////////////////////////////////////
 
     // when a new participants connects, update connectedPartsId & connectedPartsSockets arrays
     socket.on('connectPart', (data) => {
@@ -155,6 +196,17 @@ io.on('connection', function (socket) {
         if(socket.id === connectedFacSocket){
             connectedFacSocket = ""
         }
+
+        /////////////////////////////// PLAYTEST ///////////////////////////////////////////
+        // if a playtester leave, remove them from connnectedPlay
+        if(connectedPlaySockets.indexOf(socket.id) !== -1){
+            socket.broadcast.emit('deleteCircle', socket.id)
+            connectedPlaySockets.splice(connectedPlaySockets.indexOf(socket.id), 1)
+            
+        }
+
+        /////////////////////////////// PLAYTEST ///////////////////////////////////////////
+
 	});
 })
 
