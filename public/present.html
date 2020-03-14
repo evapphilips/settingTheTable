@@ -5,14 +5,19 @@
     <title>Data Dinner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/d3-force-attract@latest"></script>
     <link href="/styles.css" rel="stylesheet"/>
 </head>
 <body>
-    <div>
+    <div class="headingContainer">
         <h2 id="currentQuestion">Waiting for a question</h2>
     </div>
 
-    <div id=currentOptions style="display: none;">
+    <div class="mainContatiner">
+        <div id="chart"></div> 
+    </div>
+
+    <div class="optionContainer" id=currentOptions style="display: none;">
         <p id="o1">option 1</p>
         <p id="o2">option 2</p>
         <p id="o3">option 3</p>
@@ -21,6 +26,8 @@
     </div>
 
     <div class="plateContainer"></div>
+
+    <div class="chart"></div>
 
     <script src="/present.js"></script>
 </body>

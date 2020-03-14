@@ -122,11 +122,11 @@ io.on('connection', function (socket) {
     })
 
 
-
-
     // recieve answer for the current question from a participant
     socket.on('sendCurrentAns', (data) => {
         console.log("Recieved answer " + data.currentAnswer + " from user: " + data._id)
+        // if there is a screen presenting, send a message to the screen that a participants answers the question
+        io.to(connectedScrSocket).emit('newAnswerShared', data)
     })
 
 
