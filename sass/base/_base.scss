@@ -1,0 +1,26 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+} 
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: $default-font-primary;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.7;
+    color: $color-primary;
+    padding: $spacing-sm;
+    font-size: $default-font-size;
+
+    box-sizing: border-box;
+}
+
+  
+

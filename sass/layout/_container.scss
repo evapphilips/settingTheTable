@@ -1,0 +1,30 @@
+.container_main {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.container_prepare {
+    // background-color: lightcoral;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+        margin: $spacing-sm; 
+}
+
+.container_plate{
+    // background-color: white;
+    // flex: 1 1 400px;
+    margin: $spacing-lg;
+
+    width: 400px;
+    height: 400px;
+    /* stroke: none; */
+
+    stroke-width: 4px;
+
+
+}

@@ -1,0 +1,54 @@
+.form{
+    &_radio{
+
+        &-button{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+          
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+          
+            border: 2px solid $color-secondary;
+            transition: 0.2s all linear;
+            margin-right: 5px;
+
+            &:checked {
+                border: 10px solid $color-secondary;
+              }
+            
+            &:active,
+            &:focus{
+                outline: none;
+            }
+            
+        }
+        
+        &-label{
+            margin-left: $spacing-lg;
+            font-weight: 200;
+            font-size: 1.6rem;
+            color: $color-primary-dark;
+        }
+    }
+
+    &_field{
+        width: 300px;
+        font-weight: 200;
+        font-size: 1.6rem;
+        color: $color-primary-dark;
+        padding: $spacing-sm;
+        border: none;
+        border-bottom: 3px solid $color-secondary;
+        box-shadow: 0 .5rem .5rem rgba($color-black, .2);
+        
+
+        &:active,
+        &:focus {
+            outline: none;
+        }
+        
+
+    }
+}

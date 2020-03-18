@@ -6,7 +6,7 @@ var connectedUsers = [];
 var nodes = [];
 var svgH = 500;
 var svgW = 500;
-var radius = 100;
+var radius = 50;
 
 // Setup socket
  // connect to the socket server
@@ -67,7 +67,8 @@ var circles = svg.selectAll('circle')
         .attr('id', function (d) { return "part" + d.id})
         .attr('cx', function (d) { return d.x; })
         .attr('cy', function (d) { return d.y; })
-        .attr('r', function (d) { return d.r; });
+        .attr('r', function (d) { return d.r; })
+
     
 // Recieve an _id from a connected participant
 socket.on('shareConnectedPartId', (data) => {

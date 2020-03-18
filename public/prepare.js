@@ -105,7 +105,7 @@ prepSubmitBtn.addEventListener("click", (e) => {
         name: document.getElementById('nameInput').value,
         tableCode: document.getElementById('tableInput').value,
         prepAnswers: ans,
-        plateSvg: String(imgsrc)
+        plateSvg: null // NOT SENDING IMG SRC FOR NOW, TOO BIG
     }
     const options ={
         method: "POST",
@@ -129,7 +129,7 @@ prepSubmitBtn.addEventListener("click", (e) => {
 // Paging with next/previous button actions
 function nextPrev(n){
     // get the tabs
-    var tab = document.getElementsByClassName("tab");
+    var tab = document.getElementsByClassName("card_tab");
     // if a field is not filled out, cancel click
     // if (n == 1 && !validateForm()) return false;
     // Hide the current tab:
@@ -149,7 +149,7 @@ function nextPrev(n){
 // Show the approprate question tab
 function showTab(n) {
     // get the tabs
-    var tab = document.getElementsByClassName("tab");
+    var tab = document.getElementsByClassName("card_tab");
     // show the approriate tab
     tab[n].style.display = "block";
 
@@ -305,7 +305,7 @@ function showTab(n) {
     // show the prev/next buttons
     if(n==0){
         // hide prev and submit
-        document.getElementById("prevBtn").style.display = "none";
+        document.getElementById("prevBtn").style.visibility = "hidden";
         document.getElementById('prepSubmitBtn').style.display = "none";
         // disable next
         if(document.getElementById('nameInput').value == "" && document.getElementById('tableInput').value == ""){
@@ -314,16 +314,17 @@ function showTab(n) {
         }
     }else{
         // show prev
-        document.getElementById("prevBtn").style.display = "inline";
+        document.getElementById("prevBtn").style.visibility = "visible";
     }
     if (n == (tab.length - 1)) {
         // hide next and show submit
-        document.getElementById("nextBtn").style.display = "none"
-        document.getElementById("prepSubmitBtn").style.display = "inline";
+        document.getElementById("nextBtn").style.visibility = "hidden"
+        document.getElementById("prepSubmitBtn").style.display = "block";
     }else {
         // show next and hide submit
-        document.getElementById("nextBtn").style.display = "inline"
         document.getElementById("prepSubmitBtn").style.display = "none";
+        document.getElementById("nextBtn").style.visibility = "visible"
+        
       }  
 }
 

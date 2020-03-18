@@ -1,0 +1,68 @@
+.card{
+    
+    &_form{
+        background-color: white;
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+        border-radius: 1rem;
+        flex: 0 1 500px;
+        margin: $spacing-sm;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+
+        &_heading{
+            // background-color: coral;
+            margin: $spacing-lg;
+            // padding: $spacing-lg;
+            text-align: center;
+        }
+
+        &_body{
+            // background-color: coral;
+            // margin: $spacing-sm;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &_selection{
+            // background-color: whitesmoke;
+            // margin: $spacing-sm;
+            padding: $spacing-sm;
+            // align-self: flex-end;
+
+            // width: 350px;
+            
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+        }
+
+        &_footer{
+            // background-color: coral;
+            margin: $spacing-sm;
+            padding: $spacing-sm;
+            align-self: stretch;
+            
+            
+            &-element{
+                // background-color: cornflowerblue;
+                margin: $spacing-sm ;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+        }
+    }
+
+    &_tab{
+        display: none;
+    }
+}

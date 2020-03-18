@@ -1,0 +1,35 @@
+.heading{
+    // background-color: pink;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &_element{
+        // background-color: coral;
+        padding: $spacing-sm;
+
+        &-logo{
+            height: 6.25rem;
+
+            
+        }
+
+        &-icon{
+            height: 4rem;
+            width: 4rem;
+            fill: $color-primary-dark;
+
+            &:hover{
+                fill: #696969;
+            }
+
+           
+        }  
+        
+        
+    }
+
+   
+}

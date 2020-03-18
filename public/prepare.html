@@ -5,10 +5,252 @@
     <title>Data Dinner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <link href="/prepare.css" rel="stylesheet"/>
+    <!-- <link href="/prepare.css" rel="stylesheet"/> -->
+    <link href="/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.typekit.net/gnu3bjf.css">
+    <link rel="stylesheet" href="https://use.typekit.net/ums5bco.css">
+    
 </head>
 <body>
-    <div class="container">
+
+    <div class="container_main">
+        <div class="heading">
+            <div class="heading_element">
+                <img src="assets/logo.png" alt="DataDinner Logo" class="heading_element-logo">
+            </div>
+            <a href="/">
+                <div class="heading_element">
+                    <svg class="heading_element-icon">
+                        <use xlink:href="assets/sprite.svg#icon-home"></use>
+                    </svg>
+                </div>
+            </a>
+        </div>
+        <div class="container_prepare">
+            <div class="card_form" id=prepForm>
+    
+                <div class="card_tab">
+                    <div class="card_form_heading">
+                        <h1>Login to build you data dinner plate </h1>
+                    </div>
+                    <div class="card_form_body">
+                        <div class="card_form_selection">
+                            <input class="form_field" id="nameInput" placeholder="username..." name="name" required>
+                        </div>
+                        <div class="card_form_selection">
+                        <input class="form_field" id="tableInput" placeholder="table code..." name="tableCode" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card_tab">
+                    <div class="card_form_heading">
+                        <h1 id=ques1>Question 1</h1>
+                    </div>
+                    <div class="card_form_body">
+                        <div class="card_form_container-option">
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q11 type="radio" name="q1" value="A">
+                                <label class="form_radio-label" for="A">logical & understanding</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q12 type="radio" name="q1" value="B">
+                                <label class="form_radio-label" for="B">reserved & introspective</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q13 type="radio" name="q1" value="C">
+                                <label class="form_radio-label" for="C">outspoken & unshakable</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q14 type="radio" name="q1" value="D">
+                                <label class="form_radio-label" for="D">compassionate & empathetic</label>
+                            </div>
+                    </div>
+                    </div> 
+                </div>
+
+                <div class="card_tab">
+                    <div class="card_form_heading">
+                        <h1 id=ques2>Question 2</h1>
+                    </div>
+                    <div class="card_form_body">
+                        <div class="card_form_container-option">
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q21 type="radio" name="q2" value="A">
+                                <label class="form_radio-label" for="A">strongly agree</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q22 type="radio" name="q2" value="B">
+                                <label class="form_radio-label" for="B">agree</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q23 type="radio" name="q2" value="C">
+                                <label class="form_radio-label" for="C">neutral</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q24 type="radio" name="q2" value="D">
+                                <label class="form_radio-label" for="D">disagree</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q25 type="radio" name="q2" value="E">
+                                <label class="form_radio-label" for="E">strongly disagree</label>
+                            </div>
+
+                        </div>
+                        
+                    </div> 
+                </div>
+
+                <div class="card_tab">
+
+                    <div class="card_form_heading">
+                        <h1 id=ques3>Question 3</h1>
+                    </div>
+                    <div class="card_form_body">
+                        <div class="card_form_container-option">
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q31 type="radio" name="q3" value="A">
+                                <label class="form_radio-label"for="A">yes</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q32 type="radio" name="q3" value="B">
+                                <label class="form_radio-label" for="B">no</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q33 type="radio" name="q3" value="C">
+                                <label class="form_radio-label"for="C">sometimes</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q34 type="radio" name="q3" value="D">
+                                <label class="form_radio-label" for="D">hard to say</label>
+                            </div>
+                        </div>
+                    </div> 
+
+                </div>
+
+                <div class="card_tab">
+                    <div class="card_form_heading">
+                        <h1 id=ques4>Question 4</h1>
+                    </div>
+                    <div class="card_form_body">
+                        <div class="card_form_container-option">
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q41 type="radio" name="q4" value="A">
+                                <label class="form_radio-label" for="A">proud</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q42 type="radio" name="q4" value="B">
+                                <label class="form_radio-label" for="B">challenged</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q43 type="radio" name="q4" value="C">
+                                <label class="form_radio-label" for="C">lonely</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q44 type="radio" name="q4" value="D">
+                                <label class="form_radio-label" for="D">comfortable</label>
+                            </div>
+                        </div>            
+                    </div> 
+                </div>
+
+                <div class="card_tab">
+
+                    <div class="card_form_heading">
+                        <h1 id=ques5>Question 5</h1>
+                    </div>
+                    <div class="card_form_body">
+                        <div class="card_form_container-option">
+                            <div class="card_form_selection">
+                                <input class="form_radio-button"id=q51 type="radio" name="q5" value="A">
+                                <label class="form_radio-label" for="A">Poly Prep is my entire life</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button"id=q52 type="radio" name="q5" value="B">
+                                <label class="form_radio-label" for="B">Poly Prep is important to me, currently</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button"id=q53 type="radio" name="q5" value="C">
+                                <label class="form_radio-label" for="C">Poly Prep is just the school I go to</label>
+                            </div>
+                        </div>     
+                    </div>
+                </div>
+
+                <div class="card_tab">
+                    <div class="card_form_heading">
+                        <h1 id=ques6>Question 6</h1>
+                    </div>
+                    <div class="card_form_body">
+                        <div class="card_form_container-option">
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q61 type="radio" name="q6" value="A">
+                                <label class="form_radio-label" for="A">yes, but I want more</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q62 type="radio" name="q6" value="B">
+                                <label class="form_radio-label" for="B">yes, and I am grateful for it</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q63 type="radio" name="q6" value="C">
+                                <label class="form_radio-label" for="C">no, but I have before</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q64 type="radio" name="q6" value="D">
+                                <label class="form_radio-label" for="D">no, and I never have</label>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+
+                <div class="card_tab">
+                    <div class="card_form_heading">
+                        <h1 id=ques7>Question 7</h1>
+                    </div>
+                    <div class="card_form_body">
+                        <div class="card_form_container-option">
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q71 type="radio" name="q7" value="A">
+                                <label class="form_radio-label" for="A">the people</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q72 type="radio" name="q7" value="B">
+                                <label class="form_radio-label" for="B">the education</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q73 type="radio" name="q7" value="C">
+                                <label class="form_radio-label" for="C">the facilities</label>
+                            </div>
+                            <div class="card_form_selection">
+                                <input class="form_radio-button" id=q74 type="radio" name="q7" value="D">
+                                <label class="form_radio-label" for="D">the opportunties</label>
+                            </div>
+                        </div>               
+                    </div>
+                </div>
+
+                <div class="card_form_footer">
+                    <div class="card_form_footer-element">
+                        <button id="prevBtn" class="btn btn-secondary">back</button>
+                        <button id="nextBtn" class="btn btn-secondary">next</button>
+                        <button id="prepSubmitBtn" class="btn btn-secondary" style="display:none;">submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="container_plate">
+                <div class="container_plate-box">
+                    <svg class="plateContainer" viewBox="0 0 306 306">
+                        <path class="basePlate" d="M300.4,152.6c6.8,54-7.7,90.6-59.2,110.8c-25.9,10.2-58.3,19.2-89.9,31.8C72.7,326.4-8.7,238.1,3.2,154.3c4.7-33.2,15.3-80.1,45.7-105.6C92.3,12.1,113.1-8.1,154.9,7.1c24.9,9,58.3,11.9,79,24.2C294.8,67.4,294.8,107.9,300.4,152.6z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- //////////////////////// WORKING UNDER PREPARE STYLE ///////////////////// -->
+    <!-- <div class="container">
         <div class="container-section">
             <form id="prepForm">
                 <h4>Prepare Questions:</h4>
@@ -153,7 +395,7 @@
             </div>
             
         </div>
-    </div>
+    </div> -->
 
     <script src="/prepare.js"></script>
 </body>
