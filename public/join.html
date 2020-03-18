@@ -4,80 +4,236 @@
     <meta charset="UTF-8">
     <title>Data Dinner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <link href="/join.css" rel="stylesheet"/>
+    <!-- <link href="/join.css" rel="stylesheet"/> -->
+    <link href="/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.typekit.net/gnu3bjf.css">
+    <link rel="stylesheet" href="https://use.typekit.net/ums5bco.css">
 </head>
 <body>
-    <div class="container">
-        <div class="container-section">
-            <form id="joinForm">
-                <h4>Join the table</h4>
-
-                <div class="tab">
-                    <br>
-                    <p>Login to join the table</p>
-                    <br>
-                    <p><input id="nameInput" placeholder="Username..." name="name" required></p>
-                    <p><input id="tableInput" placeholder="Table Code..." name="tableCode" required></p>
-                    <br>
+    <div class="container_main">
+        <div class="container_main_bkg-join">
+            <div class="heading">
+                <div class="heading_element">
+                    <img src="assets/logo.png" alt="DataDinner Logo" class="heading_element-logo">
                 </div>
-
-                <div class="tab">
-                    <br>
-                    <p id="currentQuestion">Waiting for a question</p>
-                    <br>
-                    <div id="currentOptions" style="display: none;">
-                        <input id="l1" type="radio" name="currentAnswer" value="A">
-                        <label id="o1" for="A">A</label>
-                        <br>
-                        <input id="l2" type="radio" name="currentAnswer" value="B">
-                        <label id="o2" for="B">B</label>
-                        <br>
-                        <input id="l3" type="radio" name="currentAnswer" value="C">
-                        <label id="o3" for="C">C</label>
-                        <br>
-                        <input id="l4" type="radio" name="currentAnswer" value="D">
-                        <label id="o4" for="D">D</label>
-                        <br>
-                        <input id="l5" type="radio" name="currentAnswer" value="D">
-                        <label id="o5" for="D">E</label>
-                        <br>
-                    </div>   
-                </div>
-
-                <button type="button" id="loginBtn">login</button>
-                <button type="button" id="answerBtn" style="visibility: hidden;">submit</button>
-            </form>
-        </div>
-
-        <div class="container-section">
-            <button id="askBtn" disabled>submit a question</button>
-        </div>
-
-        <div id="askModal" class="modal">
-            <div class="modal-content">
-              <span id="closeModal" class="close">&times;</span>
-              <form id=>
-
-              </form id="askForm">
-                <h4>Type a question:</h4>
-                <br>
-                <input id="inputQues" placeholder="(required)" required>
-                <br>
-                <br>
-                <h4>Add answer options:</h4>
-                <br>
-                <input class="inputOpt" placeholder="(required)" required>
-                <input class="inputOpt" placeholder="(required)" required>
-                <input class="inputOpt" placeholder="(optional)" required>
-                <input class="inputOpt" placeholder="(optional)" required>
-                <input class="inputOpt" placeholder="(optional)" required>
-                <br>
-                <button type="button" id="submitAskBtn">submit</button>
-              </form>
+                <a href="/">
+                    <div class="heading_element">
+                        <svg class="heading_element-icon">
+                            <use xlink:href="assets/sprite.svg#icon-home"></use>
+                        </svg>
+                    </div>
+                </a>
             </div>
+
+            <div class="container_body">
+                <div class="card_form">
+                    
+                    <div class="card_tab">
+                        <div class="card_form_heading">
+                            <h1>Login to join the table </h1>
+                        </div>
+                        <div class="card_form_body">
+                            <div class="card_form_selection">
+                                <input class="form_field" id="nameInput" placeholder="username..." name="name" required>
+                            </div>
+                            <div class="card_form_selection">
+                            <input class="form_field" id="tableInput" placeholder="table code..." name="tableCode" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card_tab">
+                        <div class="card_form_heading">
+                            <h1 id="currentQuestion">Waiting for a question</h1>
+                        </div>
+                        <form class="card_form_body" id="joinForm">
+                            <div class="card_form_container-option">
+                                <div class="card_form_selection currentOptions"  style="display: none;">
+                                    <input class="form_radio-button" id=l1 type="radio" name="currentAnswer" value="A">
+                                    <label class="form_radio-label" id="o1" for="A">A</label>
+                                </div>
+                                <div class="card_form_selection currentOptions" style="display: none;">
+                                    <input class="form_radio-button" id=l2 type="radio" name="currentAnswer" value="B">
+                                    <label class="form_radio-label" id="o2" for="B">B</label>
+                                </div>
+                                <div class="card_form_selection currentOptions" style="display: none;">
+                                    <input class="form_radio-button" id=l3 type="radio" name="currentAnswer" value="C">
+                                    <label class="form_radio-label" id="o3" for="C">C</label>
+                                </div>
+                                <div class="card_form_selection currentOptions" style="display: none;">
+                                    <input class="form_radio-button" id=l4 type="radio" name="currentAnswer" value="D">
+                                    <label class="form_radio-label" id="o4" for="D">D</label>
+                                </div>
+                                <div class="card_form_selection currentOptions" style="display: none;">
+                                    <input class="form_radio-button" id=l5 type="radio" name="currentAnswer" value="E">
+                                    <label class="form_radio-label" id="o5" for="E">E</label>
+                                </div>
+                            </div>               
+                        </form>
+                    </div>
+
+                    <div class="card_form_footer">
+                        <div class="card_form_footer-element-single">
+                            <button id="loginBtn" class="btn btn-secondary">join</button>
+                            <button type="button" id="answerBtn" class="btn btn-secondary" style="visibility: hidden;">submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container_ask">
+                <button id="askBtn" class="btn btn-primary" style="display: none">ask a question</button>
+
+                <div class="modal" id="askModal">
+                    <div class="modal_content">
+                        <div class="modal_container-close">
+                            <a id="closeModal" class="modal_close">&times;</a>
+                        </div>
+                        <div class="modal_container-heading">
+                            <p class="modal_header">Question submission from</p>
+                        </div>
+                        <div class="modal_container-body">
+                            <form id="askForm">
+                                <h1 class="modal_text">Type your question :</h1>
+                                <div class="card_form_selection">
+                                    <input class="form_field form_field_question" id="inputQues" placeholder="(required)" required>
+                                </div>
+                                <h1 class="modal_text">Add answer options :</h1>
+                                <div class="card_form_selection">
+                                    <input class="form_field form_field_option inputOpt" placeholder="(required)" required>
+                                </div>
+                                <div class="card_form_selection">
+                                    <input class="form_field form_field_option inputOpt" placeholder="(required)" required>
+                                </div>
+                                <div class="card_form_selection">
+                                    <input class="form_field form_field_option inputOpt" placeholder="(optional)" >
+                                </div>
+                                <div class="card_form_selection">
+                                    <input class="form_field form_field_option inputOpt" placeholder="(optional)" >
+                                </div>
+                                <div class="card_form_selection">
+                                    <input class="form_field form_field_option inputOpt" placeholder="(optional)" >
+                                </div>
+
+                                <div class="card_form_footer">
+                                    <div class="card_form_footer-element-single">
+                                        <button type="button" id="submitAskBtn" class="btn btn-secondary">submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <!-- /form id="askForm">
+                            <h4>Type a question:</h4>
+                            <br>
+                            <input id="inputQues" placeholder="(required)" required>
+                            <br>
+                            <br>
+                            <h4>Add answer options:</h4>
+                            <br>
+                            <input class="inputOpt" placeholder="(required)" required>
+                            <input class="inputOpt" placeholder="(required)" required>
+                            <input class="inputOpt" placeholder="(optional)" required>
+                            <input class="inputOpt" placeholder="(optional)" required>
+                            <input class="inputOpt" placeholder="(optional)" required>
+                            <br>
+                            <button type="button" id="submitAskBtn">submit</button>
+                        </form> -->
+                        </div>
+                          
+                    </div>
+                </div>
+            </div>
+
+            
+
+
+
         </div>
-    </div>
+
+        
+    
+
+    
+</div>
+    
+
 
     <script src="/join.js"></script>
 </body>
 </html>
+
+
+
+<!-- //////////////////////// WORKING UNDER PREPARE STYLE ///////////////////// -->
+<!-- <div class="container">
+    <div class="container-section">
+        <form id="joinForm">
+            <h4>Join the table</h4>
+
+            <div class="tab">
+                <br>
+                <p>Login to join the table</p>
+                <br>
+                <p><input id="nameInput" placeholder="Username..." name="name" required></p>
+                <p><input id="tableInput" placeholder="Table Code..." name="tableCode" required></p>
+                <br>
+            </div>
+
+            <div class="tab">
+                <br>
+                <p id="currentQuestion">Waiting for a question</p>
+                <br>
+                <div id="currentOptions" style="display: none;">
+                    <input id="l1" type="radio" name="currentAnswer" value="A">
+                    <label id="o1" for="A">A</label>
+                    <br>
+                    <input id="l2" type="radio" name="currentAnswer" value="B">
+                    <label id="o2" for="B">B</label>
+                    <br>
+                    <input id="l3" type="radio" name="currentAnswer" value="C">
+                    <label id="o3" for="C">C</label>
+                    <br>
+                    <input id="l4" type="radio" name="currentAnswer" value="D">
+                    <label id="o4" for="D">D</label>
+                    <br>
+                    <input id="l5" type="radio" name="currentAnswer" value="D">
+                    <label id="o5" for="D">E</label>
+                    <br>
+                </div>   
+            </div>
+
+            <button type="button" id="loginBtn">login</button>
+            <button type="button" id="answerBtn" style="visibility: hidden;">submit</button>
+        </form>
+    </div>
+
+    <div class="container-section">
+        <button id="askBtn" disabled>submit a question</button>
+    </div>
+
+    <div id="askModal" class="modal">
+        <div class="modal-content">
+          <span id="closeModal" class="close">&times;</span>
+          <form id=>
+
+          </form id="askForm">
+            <h4>Type a question:</h4>
+            <br>
+            <input id="inputQues" placeholder="(required)" required>
+            <br>
+            <br>
+            <h4>Add answer options:</h4>
+            <br>
+            <input class="inputOpt" placeholder="(required)" required>
+            <input class="inputOpt" placeholder="(required)" required>
+            <input class="inputOpt" placeholder="(optional)" required>
+            <input class="inputOpt" placeholder="(optional)" required>
+            <input class="inputOpt" placeholder="(optional)" required>
+            <br>
+            <button type="button" id="submitAskBtn">submit</button>
+          </form>
+        </div>
+    </div>
+</div> -->

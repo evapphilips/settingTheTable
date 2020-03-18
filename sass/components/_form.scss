@@ -48,6 +48,18 @@
         &:focus {
             outline: none;
         }
+
+        &_question{
+            width: 100%;
+            border: 1px solid $color-secondary;
+            box-shadow: none;
+        }
+
+        &_option{
+            border: 1px solid $color-secondary;
+            box-shadow: none
+
+        }
         
 
     }

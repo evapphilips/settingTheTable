@@ -32,18 +32,25 @@ loginBtn.addEventListener("click", (e) => {
                 // change to next tab
                 nextPrev(1)
                 loginBtn.style.visibility = "hidden"
-                document.getElementById('answerBtn').style.visibility = "visible"
+                //document.getElementById('answerBtn').style.visibility = "visible"
                 // make ask button available
-                document.getElementById('askBtn').disabled = false;
+                document.getElementById('askBtn').style.display = "block";
 
                 // Recieve a new current question
                 socket.on('changeCurrentQuestion', (data) => {
+                    document.getElementById('answerBtn').style.visibility = "visible"
                     // get the current question details fromt he submissions db
                     fetch('/submission/find/' + data).then(result => result.json()).then(d => {
                         // change the current question
                         document.getElementById('currentQuestion').innerHTML = d.question[0]
                         // show the options
-                        document.getElementById('currentOptions').style.display = "block"
+                        // document.getElementsByClassName('currentOptions').style.display = "block"
+                        var currentOptions = document.getElementsByClassName('currentOptions')
+                        // console.log(currentOptions)
+                        for(let i=0; i<currentOptions.length; i++){
+                            currentOptions[i].style.display = "flex"
+                        }
+
                         // change the options
                         for(let i=1; i<d.question.length; i++){
                             if(d.question[i] !== ""){
@@ -69,7 +76,13 @@ loginBtn.addEventListener("click", (e) => {
                 socket.on('clearCurrentQustion', (data) => {
                     // clear question and remove options
                     document.getElementById('currentQuestion').innerHTML = "waiting for next question"
-                    document.getElementById('currentOptions').style.display = "none"
+                    // document.getElementById('currentOptions').style.display = "none"
+                    var currentOptions = document.getElementsByClassName('currentOptions')
+                        // console.log(currentOptions)
+                        for(let i=0; i<currentOptions.length; i++){
+                            currentOptions[i].style.display = "none"
+                        }
+
                 })
             }
         })
@@ -79,6 +92,7 @@ loginBtn.addEventListener("click", (e) => {
 // Answer form submitted
 document.getElementById('answerBtn').addEventListener('click', () => {
     console.log(currentUser._id)
+    // console.log(document.getElementsByClassName('joinForm'))
     // when submit is clicked, send the server users answer
     socket.emit('sendCurrentAns', {
         _id: currentUser._id,
@@ -91,7 +105,7 @@ document.getElementById('answerBtn').addEventListener('click', () => {
 // Open modal
 var askBtn = document.getElementById('askBtn')
 askBtn.addEventListener("click", () => {
-    document.getElementById("askModal").style.display = "block";
+    document.getElementById("askModal").style.display = "flex";
 })
 // Close modal
 document.getElementById('closeModal').addEventListener("click", () => {
@@ -145,7 +159,7 @@ document.getElementById('submitAskBtn').addEventListener('click', () => {
 // Show the approprate question tab
 function showTab(n) {
     // get the tabs
-    var tab = document.getElementsByClassName("tab");
+    var tab = document.getElementsByClassName("card_tab");
     // show the approriate tab
     tab[n].style.display = "block";
 }
@@ -153,7 +167,7 @@ function showTab(n) {
 // Paging with next/previous button actions
 function nextPrev(n){
     // get the tabs
-    var tab = document.getElementsByClassName("tab");
+    var tab = document.getElementsByClassName("card_tab");
     // if a field is not filled out, cancel click
     // if (n == 1 && !validateForm()) return false;
     // Hide the current tab:
@@ -163,7 +177,7 @@ function nextPrev(n){
     // if you have reached the end of the form...
     if (currentTab >= tab.length) {
         // ... the form gets submitted:
-        document.getElementById("prepForm").submit();
+        document.getElementById("joinForm").submit();
         return false;
     }
     // Otherwise, display the correct tab:

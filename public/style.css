@@ -14,7 +14,6 @@ body {
   font-style: normal;
   line-height: 1.7;
   color: #1C4F60;
-  padding: 1rem;
   font-size: 1.6rem;
   box-sizing: border-box; }
 
@@ -54,6 +53,19 @@ input::placeholder {
     background-color: whitesmoke;
     color: lightgray; }
 
+.btn-primary {
+  border: 2px solid #229A98;
+  background-color: #229A98;
+  color: #fff;
+  padding: .8rem 3rem; }
+  .btn-primary:hover {
+    border: 2px solid #1D8684;
+    background-color: #1D8684; }
+  .btn-primary:disabled {
+    border: 2px solid whitesmoke;
+    background-color: whitesmoke;
+    color: lightgray; }
+
 .card_form {
   background-color: white;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
@@ -86,6 +98,11 @@ input::placeholder {
       display: flex;
       flex-direction: row;
       justify-content: space-between; }
+      .card_form_footer-element-single {
+        margin: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; }
 
 .card_tab {
   display: none; }
@@ -122,13 +139,91 @@ input::placeholder {
   box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2); }
   .form_field:active, .form_field:focus {
     outline: none; }
+  .form_field_question {
+    width: 100%;
+    border: 1px solid #229A98;
+    box-shadow: none; }
+  .form_field_option {
+    border: 1px solid #229A98;
+    box-shadow: none; }
+
+.modal {
+  background-color: coral;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+  .modal_content {
+    background-color: whitesmoke;
+    margin: 1rem;
+    padding: 1rem;
+    width: 80%;
+    height: 80%;
+    border-radius: .5rem;
+    border: 2px solid #229A98;
+    overflow: auto;
+    /* Enable scroll if needed */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; }
+  .modal_container-close {
+    margin-right: 1rem;
+    align-self: flex-end; }
+  .modal_container-heading {
+    padding: 1rem;
+    padding-left: 8rem;
+    padding-right: 8rem; }
+  .modal_container-body {
+    margin: 1rem;
+    padding: 1rem;
+    padding-left: 8rem;
+    padding-right: 8rem; }
+  .modal_close {
+    color: #7F7F7F;
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 3rem; }
+    .modal_close:hover, .modal_close:focus {
+      color: #696969;
+      text-decoration: none;
+      cursor: pointer; }
+  .modal_header {
+    font-family: brevia, sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #7F7F7F; }
+  .modal_text {
+    font-family: forma-djr-micro, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 200;
+    color: #7F7F7F;
+    padding-left: 1rem; }
+    .modal_text:not(:first-of-type) {
+      margin-top: 3rem; }
 
 .container_main {
   display: flex;
   flex-direction: column;
-  justify-content: start; }
+  justify-content: start;
+  min-height: 100vh; }
+  .container_main_bkg-join {
+    background-size: cover;
+    height: 100vh;
+    background-blend-mode: screen;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-image: url("/assets/joinBkg.png"); }
 
-.container_prepare {
+.container_body {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -141,6 +236,9 @@ input::placeholder {
   height: 400px;
   /* stroke: none; */
   stroke-width: 4px; }
+
+.container_ask {
+  margin: 1rem; }
 
 .heading {
   display: flex;

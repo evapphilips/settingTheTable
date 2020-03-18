@@ -2,9 +2,29 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
+    min-height: 100vh;
+    // background-color: grey;
+    
+
+    &_bkg-join{
+        background-size: cover;
+        height: 100vh;
+        background-blend-mode: screen;
+        // clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 100%);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        // background-color: red;
+        background-image: url("/assets/joinBkg.png");
+
+        // align-self: flex-end;
+    }
+
+   
+
+    
 }
 
-.container_prepare {
+.container_body {
     // background-color: lightcoral;
 
         display: flex;
@@ -12,6 +32,7 @@
         justify-content: space-evenly;
         flex-wrap: wrap;
 
+        // height: 100%;
         margin: $spacing-sm; 
 }
 
@@ -25,6 +46,9 @@
     /* stroke: none; */
 
     stroke-width: 4px;
+}
 
-
+.container_ask{
+    // background-color: coral;
+    margin: $spacing-sm;
 }

@@ -57,7 +57,17 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+
+                &-single{
+                    margin: $spacing-sm ;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+
+                }
             }
+
+
             
         }
     }

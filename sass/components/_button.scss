@@ -46,4 +46,24 @@
             color: lightgray;
         }
     }
+
+    &-primary{
+        border: 2px solid $color-secondary;
+        background-color: $color-secondary;
+        color: $color-white;
+        padding: .8rem 3rem;
+
+        &:hover{
+            border: 2px solid #1D8684;
+            background-color: #1D8684;
+
+        }
+
+        &:disabled{
+            border: 2px solid whitesmoke; 
+            background-color: whitesmoke;
+            color: lightgray;
+            // display:none
+        }
+    }
 }
