@@ -52,3 +52,18 @@
     // background-color: coral;
     margin: $spacing-sm;
 }
+
+.container_fac{
+    // background-color: coral;
+    
+    margin: $spacing-sm; 
+
+    display: flex;
+    flex-direction: column;
+    // align-items: flex-start;
+}
+
+.container_list{
+    // background-color: white;
+    margin: $spacing-sm; 
+}

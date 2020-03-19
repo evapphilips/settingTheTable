@@ -43,12 +43,14 @@ input::placeholder {
 .btn:hover {
   background-color: whitesmoke; }
 
-.btn:active, .btn:focus {
-  outline: none; }
-
 .btn-secondary {
   border: 2px solid #1C4F60; }
   .btn-secondary:disabled {
+    border: 2px solid whitesmoke;
+    background-color: whitesmoke;
+    color: lightgray; }
+  .btn-secondary:active, .btn-secondary:focus {
+    outline: none;
     border: 2px solid whitesmoke;
     background-color: whitesmoke;
     color: lightgray; }
@@ -65,6 +67,15 @@ input::placeholder {
     border: 2px solid whitesmoke;
     background-color: whitesmoke;
     color: lightgray; }
+  .btn-primary:active, .btn-primary:focus {
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    border: 2px solid #157473;
+    background-color: #157473;
+    color: lightgray; }
+  .btn-primary-highlight:active, .btn-primary-highlight:focus {
+    border: 2px solid #1C4F60; }
 
 .card_form {
   background-color: white;
@@ -189,7 +200,7 @@ input::placeholder {
     padding-right: 8rem; }
   .modal_close {
     color: #7F7F7F;
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: bold;
     line-height: 3rem; }
     .modal_close:hover, .modal_close:focus {
@@ -200,7 +211,7 @@ input::placeholder {
     font-family: brevia, sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
-    color: #7F7F7F; }
+    color: #1C4F60; }
   .modal_text {
     font-family: forma-djr-micro, sans-serif;
     font-size: 1.8rem;
@@ -209,6 +220,28 @@ input::placeholder {
     padding-left: 1rem; }
     .modal_text:not(:first-of-type) {
       margin-top: 3rem; }
+
+.submission_element {
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  border-radius: .5rem;
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; }
+  .submission_element_details {
+    padding: 1rem; }
+    .submission_element_details-question {
+      font-family: forma-djr-micro, sans-serif;
+      font-weight: 400;
+      font-size: 1.8rem;
+      color: #1C4F60; }
+    .submission_element_details-option {
+      font-family: forma-djr-micro, sans-serif;
+      font-weight: 200;
+      font-size: 1.4rem;
+      color: #7F7F7F; }
 
 .container_main {
   display: flex;
@@ -238,6 +271,14 @@ input::placeholder {
   stroke-width: 4px; }
 
 .container_ask {
+  margin: 1rem; }
+
+.container_fac {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column; }
+
+.container_list {
   margin: 1rem; }
 
 .heading {

@@ -30,13 +30,6 @@
         // }
     }
 
-    &:active,
-    &:focus {
-        outline: none;
-        // transform: translateY(-1px);
-        // box-shadow: 0 .5rem 1rem rgba($color-black, .2);
-    }
-
     &-secondary{
         border: 2px solid $color-primary;
 
@@ -45,6 +38,14 @@
             background-color: whitesmoke;
             color: lightgray;
         }
+
+        &:active,
+        &:focus {
+        outline: none;
+        border: 2px solid whitesmoke; 
+            background-color: whitesmoke;
+            color: lightgray;
+    }
     }
 
     &-primary{
@@ -64,6 +65,23 @@
             background-color: whitesmoke;
             color: lightgray;
             // display:none
+        }
+
+        &:active,
+        &:focus {
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+        border: 2px solid #157473;
+        background-color: #157473;
+        color: lightgray;
+        }
+
+        &-highlight{
+            &:active,
+            &:focus{
+                border: 2px solid $color-primary;
+            }  
         }
     }
 }

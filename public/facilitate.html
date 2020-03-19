@@ -4,10 +4,73 @@
     <meta charset="UTF-8">
     <title>Data Dinner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <link href="/facilitate.css" rel="stylesheet"/>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <link href="/facilitate.css" rel="stylesheet"/> -->
+    <link href="/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.typekit.net/gnu3bjf.css">
+    <link rel="stylesheet" href="https://use.typekit.net/ums5bco.css">
 </head>
 <body>
-    <h1 id=questionTitle>Facilitator Page</h1>
+    <div class="container_main">
+        <div class="heading">
+            <div class="heading_element">
+                <img src="assets/logo.png" alt="DataDinner Logo" class="heading_element-logo">
+            </div>
+            <a href="/">
+                <div class="heading_element">
+                    <svg class="heading_element-icon">
+                        <use xlink:href="assets/sprite.svg#icon-home"></use>
+                    </svg>
+                </div>
+            </a>
+        </div>
+        <div class="container_body">
+            <div class="card_form" id="loginCard">        
+                <div class="card_form_heading">
+                    <h1>Enter the table code for the table you would like to facilitate </h1>
+                </div>
+                <div class="card_form_body">
+                    <div class="card_form_selection">
+                        <input class="form_field" id="tableInput" placeholder="table code..." name="tableCode" required>
+                    </div>
+                </div>
+
+                <div class="card_form_footer">
+                    <div class="card_form_footer-element-single">
+                        <button id="loginBtn" class="btn btn-secondary">login</button>
+                    </div>
+                </div>
+            </div>      
+        </div>   
+
+        <div class="container_fac">
+            <div class="container_list">
+                <button id="clearBtn" class="btn btn-secondary" style="display: none;">clear</button>
+            </div>
+            <div class="container_list" id="submissionContainer">
+                <!-- <div class="submission_element">
+                    <div class="submission_element_item">
+                        <div class="submission_element_details">
+                            <div class="submission_element_details-question">question</div>
+                            <div class="submission_element_details-option">option</div>
+                        </div>
+                    </div>
+                    <div class="submission_element_item">
+                        <div class="submission_element_details">
+                            <button id="sendBtn" class="btn btn-primary">send</button>
+                        </div>
+                        
+                    </div>
+                </div> -->
+            </div>
+        </div>
+</div>
+    <script src="/facilitate.js"></script>
+</body>
+</html>
+
+<!-- //////////////////////// WORKING UNDER PREPARE STYLE ///////////////////// -->
+<!-- <h1 id=questionTitle>Facilitator Page</h1>
 
     <div>
         <button id="clearBtn">clear</button>
@@ -15,7 +78,7 @@
 
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <!-- <span id="closeModal" class="close">&times;</span> -->
+            <span id="closeModal" class="close">&times;</span>
             </form id="tableForm">
                 <h4><b>Enter the table code for the table you would like to facilitate</b></h4>
                 <p><input id="tableInput" placeholder="Table Code..." name="tableCode" required></p>
@@ -24,8 +87,6 @@
         </div>
     </div>
 
-    <div id="submissionContainer"></div>
+    <div id="submissionContainer">
 
-    <script src="/facilitate.js"></script>
-</body>
-</html>
+    </div> -->

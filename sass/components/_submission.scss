@@ -1,0 +1,42 @@
+.submission{
+    &_element{
+        // background-color: lightblue;
+
+        box-shadow: 0 .25rem .5rem rgba($color-black, .2);
+        border-radius: .5rem;
+        padding: $spacing-sm; 
+        margin: $spacing-sm;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        // &_item{
+        //     // background-color: lightcoral;
+        // }
+
+        &_details{
+            // background-color: white;
+            padding: $spacing-sm; 
+
+            &-question{
+                font-family: $default-font-primary;
+                font-weight: 400;
+                font-size: 1.8rem;
+                color: $color-primary;
+
+            }
+
+            &-option{
+                font-family: $default-font-primary;
+                font-weight: 200;
+                font-size: 1.4rem;
+                color: $color-primary-dark;
+
+            }
+        }
+
+        
+    }
+}

@@ -10,10 +10,10 @@ var type = 1; // This client is a facilitator (1)
 var currentSubmission = [];
 
 // When page loads, show login modal
-window.addEventListener('load', () => {
-    // show modal
-    document.getElementById('loginModal').style.display = "block";    
-})
+// window.addEventListener('load', () => {
+//     // show modal
+//     document.getElementById('loginModal').style.display = "block";    
+// })
 
 // Complete login
 var loginBtn = document.getElementById('loginBtn')
@@ -27,9 +27,11 @@ loginBtn.addEventListener("click", (e) => {
              // if the table does not exist
              if(data.message === "failure"){
                  alert("Uh oh! There are no tables with that code.  Check that you have the correct table code.");
-                }else{
+                }else{           
                     // if the table exists, hide the modal
-                    document.getElementById('loginModal').style.display = "none"; 
+                    document.getElementById('loginCard').style.display = "none"; 
+                    // show the clear button
+                    document.getElementById('clearBtn').style.display = "block"
                     // connect to the socket server
                     socket = io.connect()
                     // send socket, a facilitate connected
@@ -56,16 +58,21 @@ loginBtn.addEventListener("click", (e) => {
                                         currentSubmission.push(submission.question)
                                         // show submission
                                         // access the submission container
-                                        var submissionContainer = document.getElementById('submissionContainer')
-                                        var newSubmission = showContent(submissionContainer, submission.question[0], 'DIV')
-                                        // show options
+                                        // var submissionContainer = document.getElementById('submissionContainer')
+
+                                        // make option string
+                                        var optString = ""
                                         for(let i=1; i<submission.question.length; i++){
                                             if(submission.question[i] !== ""){
-                                                showContent(newSubmission, submission.question[i], 'P')
-                                            }  
+                                                if(i == 1){
+                                                    optString = submission.question[i];
+                                                }else{
+                                                    optString = optString + ", " + submission.question[i];
+                                                }
+                                            } 
                                         }
-                                        // show send button
-                                        showSendBtn(newSubmission, submission._id)
+                                        // add new item to submission list
+                                        showContent('submissionContainer', submission.question[0], optString, submission._id)
                                     })
                                 }
                             }).catch(err => {
@@ -77,7 +84,8 @@ loginBtn.addEventListener("click", (e) => {
                             // disconnect this user from the socket
                             socket.disconnect()
                             // show login modal
-                            document.getElementById('loginModal').style.display = "block"; 
+                            document.getElementById('loginCard').style.display = "flex";
+                            tableInput.value = "";
                         }  
                     })
 
@@ -87,17 +95,19 @@ loginBtn.addEventListener("click", (e) => {
                             // add to submission array
                             currentSubmission.push(d.question)
                             // show submission
-                            // access the submission container
-                            var submissionContainer = document.getElementById('submissionContainer')
-                            var newSubmission = showContent(submissionContainer, d.question[0], 'DIV')
-                            // show options
-                            for(let i=1; i<d.question.length; i++){
-                                if(d.question[i] !== ""){
-                                    showContent(newSubmission, d.question[i], 'P')
-                                }  
-                            }
-                            // show send button
-                            showSendBtn(newSubmission, d._id)
+                             // make option string
+                             var optString = ""
+                             for(let i=1; i<d.question.length; i++){
+                                 if(d.question[i] !== ""){
+                                     if(i == 1){
+                                         optString = d.question[i];
+                                     }else{
+                                         optString = optString + ", " + d.question[i];
+                                     }
+                                 } 
+                             }
+                             // add new item to submission list
+                             showContent('submissionContainer', d.question[0], optString, d._id)
                         })
                     })
 
@@ -115,31 +125,35 @@ document.getElementById('clearBtn').addEventListener('click', () => {
 
 //////////////// Helper Functions /////////////////////
 // add a submission div to the page
-function showContent(container, content, type){
-    // append content
-    var newSubmission = document.createElement(type)
-    newSubmission.innerText = content; 
-    container.appendChild(newSubmission);
-    return newSubmission;
-}
+function showContent(container, ques, options, id){
+    // access submission container
+    var element = d3.select('#' + container).append('div')
+        .attr("class", "submission_element")
+    var left = element.append('div')
+        .attr("class", "submission_element_item")
+    var detailsLeft = left.append('div')
+        .attr("class", "submission_element_details")
+    var question = detailsLeft.append('div')
+        .attr("class", "submission_element_details-question")
+        .text(ques)
+    var options = detailsLeft.append('div')
+        .attr("class", "submission_element_details-option")
+        .text(options)
+    var right = element.append('div')
+        .attr("class", "submission_element_item")
 
-// add a send button to the page
-function showSendBtn(container, id){
-    // prepare append
-    var newSubmission = document.createElement('BUTTON')
-    newSubmission.innerHTML = "SEND";
-    newSubmission.id = id;
-    newSubmission.className = 'sendBtn'
-    // add even listener
-    newSubmission.addEventListener('click', (e) => {
-        // when a send button is pressed, tell the server to send a question
-        socket.emit('shareQuestion', e.target.id)
-    })
-    // apend child
-    container.appendChild(newSubmission);
-    
-}
+    var detailsRight = right.append('div')
+        .attr("class", "submission_element_details")
 
+    var button = detailsRight.append('button')
+        .attr("id", id)
+        .attr("class", "btn btn-primary btn-primary-highlight")
+        .text("send")
+        .on("click", () => {
+            // when a send button is pressed, tell the server to send a question
+            socket.emit('shareQuestion', id)
+        })
+}
 
 
 

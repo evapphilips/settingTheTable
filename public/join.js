@@ -38,7 +38,15 @@ loginBtn.addEventListener("click", (e) => {
 
                 // Recieve a new current question
                 socket.on('changeCurrentQuestion', (data) => {
+                    // clear any old answers
+                    var el = document.getElementsByName("currentAnswer");
+                    for(var i=0;i<el.length;i++){
+                        el[i].checked = false;
+                    }
+                    // show submit button
                     document.getElementById('answerBtn').style.visibility = "visible"
+                    // undisable the submit button 
+                    document.getElementById('answerBtn').disabled = false;
                     // get the current question details fromt he submissions db
                     fetch('/submission/find/' + data).then(result => result.json()).then(d => {
                         // change the current question
@@ -74,6 +82,8 @@ loginBtn.addEventListener("click", (e) => {
 
                 // Recieve a clear from the facilitator
                 socket.on('clearCurrentQustion', (data) => {
+                    // hide the submit button 
+                    document.getElementById('answerBtn').style.visibility = "hidden"
                     // clear question and remove options
                     document.getElementById('currentQuestion').innerHTML = "waiting for next question"
                     // document.getElementById('currentOptions').style.display = "none"
@@ -98,7 +108,10 @@ document.getElementById('answerBtn').addEventListener('click', () => {
         _id: currentUser._id,
         currentAnswer: document.getElementById('joinForm').elements["currentAnswer"].value
     })
-    console.log(document.getElementById('joinForm').elements["currentAnswer"].value)
+    // console.log(document.getElementById('joinForm').elements["currentAnswer"].value)
+
+    // disable the submit button 
+    document.getElementById('answerBtn').disabled = true;
 })
 
 
