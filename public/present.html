@@ -6,29 +6,94 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://unpkg.com/d3-force-attract@latest"></script>
-    <link href="/styles.css" rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="headingContainer">
-        <h2 id="currentQuestion">Waiting for a question</h2>
+    <div class="container_main">
+        <div class="heading">
+            <div class="heading_element">
+                <img src="assets/logo.png" alt="DataDinner Logo" class="heading_element-logo">
+            </div>
+            <a href="/">
+                <div class="heading_element">
+                    <svg class="heading_element-icon">
+                        <use xlink:href="assets/sprite.svg#icon-home"></use>
+                    </svg>
+                </div>
+            </a>
+        </div>
+
+        <div class="container_body">
+            <div class="container_pres">
+                <div class="container_pres-question">
+                    <h1 id="currentQuestion">Waiting for a question</h1>
+                </div>
+                <div class="container_pres-card">
+                        <div id="chart"></div> 
+                </div>
+                <div class="container_pres-footer">
+                    <div class="pres pres_axis" id=currentAxis style="display: none;" >
+                        <div id="a1">
+                            <svg class="pres_axis-icon">
+                                <use xlink:href="assets/sprite.svg#icon-radio-checked"></use>
+                            </svg>
+                        </div>
+                        <div id="a2">
+                            <svg class="pres_axis-icon">
+                                <use xlink:href="assets/sprite.svg#icon-radio-checked"></use>
+                            </svg>
+                        </div>
+                        <div id="a3">
+                            <svg class="pres_axis-icon">
+                                <use xlink:href="assets/sprite.svg#icon-radio-checked"></use>
+                            </svg>
+                        </div>
+                        <div id="a4">
+                            <svg class="pres_axis-icon">
+                                <use xlink:href="assets/sprite.svg#icon-radio-checked"></use>
+                            </svg>
+                        </div>
+                        <div id="a5">
+                            <svg class="pres_axis-icon">
+                                <use xlink:href="assets/sprite.svg#icon-radio-checked"></use>
+                            </svg>
+                        </div>
+                    
+                    </div>
+                    <div class="pres pres_label" id=currentLabels style="display: none;">
+                        <div id="o1">option 1</div>
+                        <div id="o2">option 2</div>
+                        <div id="o3">option 3</div>
+                        <div id="o4">option 4</div>
+                        <div id="o5">option 5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="mainContatiner">
-        <div id="chart"></div> 
-    </div>
-
-    <div class="optionContainer" id=currentOptions style="display: none;">
-        <p id="o1">option 1</p>
-        <p id="o2">option 2</p>
-        <p id="o3">option 3</p>
-        <p id="o4">option 4</p>
-        <p id="o5">option 5</p>
-    </div>
-
-    <div class="plateContainer"></div>
-
-    <div class="chart"></div>
-
+   
     <script src="/present.js"></script>
 </body>
 </html>
+
+
+<!-- //////////////////////// WORKING UNDER PREPARE STYLE ///////////////////// -->
+<!-- <div class="headingContainer">
+    <h2 id="currentQuestion">Waiting for a question</h2>
+</div>
+
+<div class="mainContatiner">
+    <div id="chart"></div> 
+</div>
+
+<div class="optionContainer" id=currentOptions style="display: none;">
+    <p id="o1">option 1</p>
+    <p id="o2">option 2</p>
+    <p id="o3">option 3</p>
+    <p id="o4">option 4</p>
+    <p id="o5">option 5</p>
+</div>
+
+<div class="plateContainer"></div>
+
+<div class="chart"></div> -->

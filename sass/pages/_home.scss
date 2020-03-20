@@ -1,0 +1,52 @@
+.instruction{
+    // background-color: pink;
+    flex: 0 1 300px;
+    margin: $spacing-lg; 
+    // padding: $spacing-sm;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+
+    &_title{
+        margin-bottom: $spacing-sm;
+    }
+
+    &_body{
+        // align-self: center;
+        // padding: $spacing-sm;
+
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        // justify-content: flex-start;
+        margin-left: $spacing-sm;
+        // margin: 1rem;
+        
+        // width: 100%;
+    }
+
+    &-icon{
+        height: 2rem;
+        width: 2rem;
+        fill: $color-primary;
+        // background-color: red;
+        margin-right: $spacing-sm;
+    }
+
+    &_footer{
+        align-self: flex-end;  
+        margin-top: $spacing-lg;     
+    }
+}
+
+.arrow{
+    &-icon{
+        height: 3rem;
+        width: 3rem;
+        fill: $color-primary;
+        animation: bounce 1s infinite  alternate;
+    }
+}

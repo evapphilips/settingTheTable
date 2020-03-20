@@ -1,0 +1,21 @@
+.pres{
+    background-color: white;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+
+    &_axis{
+        &-icon{
+            height: 2.5rem;
+            width: 2.5rem;
+            fill: $color-secondary;
+        }
+
+    }
+
+    &_label{
+
+    }
+}

@@ -4,9 +4,13 @@ var type = 2; // This client is a screen (2)
 // Varaibles for simulation
 var connectedUsers = [];
 var nodes = [];
-var svgH = 500;
-var svgW = 500;
-var radius = 50;
+var svgH = window.innerHeight * .70;
+var svgW = (window.innerWidth - 20);
+var radius = 20;
+var optNum = 0;
+
+//
+
 
 // Setup socket
  // connect to the socket server
@@ -32,12 +36,19 @@ socket.on('checkConnectScr', (data) => {
 var simulation = d3.forceSimulation()
     .force('attract', d3.forceAttract()
         .target(function(d) { 
+            console.log(optNum)
             if(d.target == 0){
-                return [100, 100];
+                return [0, 0];
             }else if(d.target === "A"){
-                return [200, 100];
+                return [svgW/(optNum + 1), svgH/2];
             }else if(d.target === "B"){
-                return [300, 100];
+                return [2*svgW/(optNum + 1), svgH/2];
+            }else if(d.target === "C"){
+                return [3*svgW/(optNum + 1), svgH/2];
+            }else if(d.target === "D"){
+                return [4*svgW/(optNum + 1), svgH/2];
+            }else if(d.target === "E"){
+                return [5*svgW/(optNum + 1), svgH/2];
             }else{
                 return[0, 0];
             }
@@ -55,8 +66,10 @@ var simulation = d3.forceSimulation()
 // create an svg group inside the chart elements
 var svg = d3.select('#chart').append('svg')
     .attr("width", "100%")
-    .attr("height", svgH)
-    .attr("style", "background-color: whitesmoke")
+    .attr("height", "70vh")
+    .attr("style", "background-color: white")
+    
+    // .attr("style", "border-radius: 2rem")
     .append('g')
     .attr("transform", "translate(0, 0)")
 
@@ -162,30 +175,46 @@ socket.on('changeCurrentQuestion', (data) => {
     // get the current question details fromt he submissions db
     fetch('/submission/find/' + data).then(result => result.json()).then(d => {
         // change the current question
-        document.getElementById('currentQuestion').innerHTML = d.question[0]
+        document.getElementById('currentQuestion').innerHTML = "Question: " + d.question[0]
         // show the options
-        document.getElementById('currentOptions').style.display = "block"
-        // change the options
-        console.log(d.question)
+        document.getElementById('currentLabels').style.display = "flex"
+        document.getElementById('currentAxis').style.display = "flex"
+        // change the option labels
+        // console.log(d.question)
+        // store number of options
+        optNum = 0;
         for(let i=1; i<d.question.length; i++){
             if(d.question[i] !== ""){
-                var id = "o" + i;
-                var option = document.getElementById(id);
+                var id_o = "o" + i;
+                var id_a = "a" + i;
+                var option = document.getElementById(id_o);
+                var tick = document.getElementById(id_a);
                 option.style.display = "inline-block"
+                tick.style.display = "inline-block"
                 option.innerText = d.question[i];
+                console.log("hi")
+                optNum ++
+                console.log(optNum)
             }else{
-                var id = "o" + i;
-                document.getElementById(id).style.display = "none"
+                var id_o  = "o" + i;
+                var id_a = "a" + i;
+                document.getElementById(id_o).style.display = "none"
+                document.getElementById(id_a).style.display = "none"
             }
         }
-    })
-})
+
+            })
+        })
+
+        
+
 
 // Recieve a clear from the facilitator
 socket.on('clearCurrentQustion', (data) => {
     // clear question and remove options
     document.getElementById('currentQuestion').innerHTML = "waiting for next question"
-    document.getElementById('currentOptions').style.display = "none"
+    document.getElementById('currentLabels').style.display = "none"
+    document.getElementById('currentAxis').style.display = "none"
 
     // force all nodes to original target
     connectedUsers.forEach((user) => {
