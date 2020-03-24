@@ -75,4 +75,89 @@
     &_tab{
         display: none;
     }
+
+    &_role{
+        // background-color: white;
+        // box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+        // border-radius: 1rem;
+        flex: 0 1 350px;
+        margin: $spacing-sm;
+        // padding: $spacing-sm;
+        height: 350px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        perspective: 1000px;
+
+        &:hover &_inner {
+            transform: rotateY(180deg);
+          }
+
+        &_icon{
+            // background-color: coral;
+            padding: $spacing-lg;
+            width: 25rem;
+            height: 25rem;
+        }
+
+        &_label{
+            // background-color: coral;
+            padding: $spacing-sm;
+            // margin-top: $spacing-lg;
+            &_btn{
+                // background-color: coral;
+                margin: $spacing-sm;
+            }
+        }
+
+        &_inner{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+
+        }
+
+        &_front,
+        &_back{
+            position: absolute;
+            width: 100%;
+            height: 350px;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+
+            box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+            border-radius: 1rem;
+            // flex: 0 1 300px;
+            // margin: $spacing-sm;
+            // padding: $spacing-sm;
+
+            // display: flex;
+            // flex-direction: column;
+            // align-items: center;
+            // justify-content: center;
+            
+        }
+
+        &_front{
+            background-color: white;
+            color: black;
+
+        }
+
+        &_back{
+            background-color: white;
+            color: white;
+            transform: rotateY(180deg);
+            height: 350px;
+            
+        }
+
+
+    }
 }

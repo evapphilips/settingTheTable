@@ -52,7 +52,7 @@ input::placeholder {
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: .5rem 2rem;
+  padding: .5rem 1rem;
   display: inline-block;
   border-radius: .5rem;
   transition: all .2s;
@@ -141,6 +141,50 @@ input::placeholder {
 
 .card_tab {
   display: none; }
+
+.card_role {
+  flex: 0 1 350px;
+  margin: 1rem;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px; }
+  .card_role:hover .card_role_inner {
+    transform: rotateY(180deg); }
+  .card_role_icon {
+    padding: 3rem;
+    width: 25rem;
+    height: 25rem; }
+  .card_role_label {
+    padding: 1rem; }
+    .card_role_label_btn {
+      margin: 1rem; }
+  .card_role_inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d; }
+  .card_role_front, .card_role_back {
+    position: absolute;
+    width: 100%;
+    height: 350px;
+    -webkit-backface-visibility: hidden;
+    /* Safari */
+    backface-visibility: hidden;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    border-radius: 1rem; }
+  .card_role_front {
+    background-color: white;
+    color: black; }
+  .card_role_back {
+    background-color: white;
+    color: white;
+    transform: rotateY(180deg);
+    height: 350px; }
 
 .form_radio-button {
   -webkit-appearance: none;
@@ -288,7 +332,6 @@ input::placeholder {
     background-image: url("/assets/homeBkg.png"); }
 
 .container_body {
-  background-color: lightcoral;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -341,13 +384,21 @@ input::placeholder {
     justify-content: space-around;
     flex-wrap: wrap;
     margin: 1rem;
-    margin-top: 8rem; }
+    margin-top: 10rem; }
     .container_home_intro-title {
       flex: 0 1 420px;
       margin: 3rem; }
   .container_home_arrow {
     align-self: flex-end;
-    margin: 3rem; }
+    margin: 3rem;
+    margin-top: 6rem; }
+  .container_home_role {
+    margin: 3rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; }
 
 .heading {
   display: flex;
@@ -389,10 +440,22 @@ input::placeholder {
     margin-top: 3rem; }
 
 .arrow-icon {
-  height: 3rem;
-  width: 3rem;
+  height: 6rem;
+  width: 6rem;
   fill: #1C4F60;
   animation: bounce 1s infinite  alternate; }
+
+.role_heading {
+  align-self: center; }
+
+.role_body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem; }
 
 .basePlate {
   stroke: "none";

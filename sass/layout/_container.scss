@@ -41,7 +41,7 @@
 }
 
 .container_body {
-    background-color: lightcoral;
+    // background-color: lightcoral;
 
         display: flex;
         flex-direction: row;
@@ -142,7 +142,7 @@
 
         // height: 100%;
         margin: $spacing-sm; 
-        margin-top: 8rem;
+        margin-top: 10rem;
 
         &-title{
             // background-color: white;
@@ -155,6 +155,20 @@
         // background-color: white;
         align-self: flex-end;
         margin: $spacing-lg; 
+        margin-top: 6rem;
+
+    }
+
+    &_role{
+        // background-color: coral;
+        margin: $spacing-lg; 
+        margin-top: $spacing-lg;
+        margin-bottom: $spacing-lg;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
 
     }
     

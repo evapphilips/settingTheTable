@@ -44,9 +44,28 @@
 
 .arrow{
     &-icon{
-        height: 3rem;
-        width: 3rem;
+        height: 6rem;
+        width: 6rem;
         fill: $color-primary;
         animation: bounce 1s infinite  alternate;
+    }
+}
+
+.role{
+    &_heading{
+        align-self: center;
+    }
+
+    &_body{
+        // background-color: coral;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+        margin: $spacing-sm;
+        margin-top: $spacing-lg;
+        margin-bottom: $spacing-lg;
+        
     }
 }
