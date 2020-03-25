@@ -1,8 +1,11 @@
 .instruction{
-    // background-color: pink;
-    flex: 0 1 300px;
+    // background-color: white;
+    flex: 0 1 325px;
     margin: $spacing-lg; 
     // padding: $spacing-sm;
+    border-radius: .5rem;
+    // border: .5px solid #1C4F60;
+    // box-shadow: 0 .25rem .5rem rgba($color-black, .2);
 
     display: flex;
     flex-direction: column;
@@ -11,7 +14,7 @@
 
 
     &_title{
-        margin-bottom: $spacing-sm;
+        margin-bottom: $spacing-lg;
     }
 
     &_body{
@@ -23,14 +26,15 @@
         align-items: flex-start;
         // justify-content: flex-start;
         margin-left: $spacing-sm;
+        margin-top: $spacing-sm;
         // margin: 1rem;
         
         // width: 100%;
     }
 
     &-icon{
-        height: 2rem;
-        width: 2rem;
+        height: 2.5rem;
+        width: 2.5rem;
         fill: $color-primary;
         // background-color: red;
         margin-right: $spacing-sm;
@@ -38,7 +42,7 @@
 
     &_footer{
         align-self: flex-end;  
-        margin-top: $spacing-lg;     
+        margin-top: 4rem;     
     }
 }
 
@@ -47,13 +51,14 @@
         height: 6rem;
         width: 6rem;
         fill: $color-primary;
-        animation: bounce 1s infinite  alternate;
+        animation: bounce .8s infinite  alternate;
     }
 }
 
 .role{
     &_heading{
         align-self: center;
+        margin-bottom: $spacing-lg;
     }
 
     &_body{

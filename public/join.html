@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <title>Data Dinner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <!-- <link href="/join.css" rel="stylesheet"/> -->
     <link href="/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.typekit.net/gnu3bjf.css">
     <link rel="stylesheet" href="https://use.typekit.net/ums5bco.css">
 </head>
 <body>
-    <div class="container_main">
-        <div class="container_main_bkg-join">
+    <div class="container_main container_main_bkg-join" >
             <div class="heading">
                 <div class="heading_element">
                     <img src="assets/logo.png" alt="DataDinner Logo" class="heading_element-logo">
@@ -128,7 +126,6 @@
                     </div>
                 </div>
             </div>
-        </div>
 </div>
     
 
@@ -137,76 +134,3 @@
 </body>
 </html>
 
-
-
-<!-- //////////////////////// WORKING UNDER PREPARE STYLE ///////////////////// -->
-<!-- <div class="container">
-    <div class="container-section">
-        <form id="joinForm">
-            <h4>Join the table</h4>
-
-            <div class="tab">
-                <br>
-                <p>Login to join the table</p>
-                <br>
-                <p><input id="nameInput" placeholder="Username..." name="name" required></p>
-                <p><input id="tableInput" placeholder="Table Code..." name="tableCode" required></p>
-                <br>
-            </div>
-
-            <div class="tab">
-                <br>
-                <p id="currentQuestion">Waiting for a question</p>
-                <br>
-                <div id="currentOptions" style="display: none;">
-                    <input id="l1" type="radio" name="currentAnswer" value="A">
-                    <label id="o1" for="A">A</label>
-                    <br>
-                    <input id="l2" type="radio" name="currentAnswer" value="B">
-                    <label id="o2" for="B">B</label>
-                    <br>
-                    <input id="l3" type="radio" name="currentAnswer" value="C">
-                    <label id="o3" for="C">C</label>
-                    <br>
-                    <input id="l4" type="radio" name="currentAnswer" value="D">
-                    <label id="o4" for="D">D</label>
-                    <br>
-                    <input id="l5" type="radio" name="currentAnswer" value="D">
-                    <label id="o5" for="D">E</label>
-                    <br>
-                </div>   
-            </div>
-
-            <button type="button" id="loginBtn">login</button>
-            <button type="button" id="answerBtn" style="visibility: hidden;">submit</button>
-        </form>
-    </div>
-
-    <div class="container-section">
-        <button id="askBtn" disabled>submit a question</button>
-    </div>
-
-    <div id="askModal" class="modal">
-        <div class="modal-content">
-          <span id="closeModal" class="close">&times;</span>
-          <form id=>
-
-          </form id="askForm">
-            <h4>Type a question:</h4>
-            <br>
-            <input id="inputQues" placeholder="(required)" required>
-            <br>
-            <br>
-            <h4>Add answer options:</h4>
-            <br>
-            <input class="inputOpt" placeholder="(required)" required>
-            <input class="inputOpt" placeholder="(required)" required>
-            <input class="inputOpt" placeholder="(optional)" required>
-            <input class="inputOpt" placeholder="(optional)" required>
-            <input class="inputOpt" placeholder="(optional)" required>
-            <br>
-            <button type="button" id="submitAskBtn">submit</button>
-          </form>
-        </div>
-    </div>
-</div> -->

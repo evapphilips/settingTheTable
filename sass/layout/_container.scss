@@ -7,8 +7,11 @@
     
 
     &_bkg-join{
-        background-size: cover;
-        height: 100vh;
+        // background-size: cover;
+        background-size: 100% 100%;
+        background-repeat:no-repeat;
+        // height: 100vh;
+        // width: 50%;
         background-blend-mode: screen;
         // clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 100%);
         border-top-left-radius: 3px;
@@ -16,7 +19,7 @@
         // background-color: red;
         background-image: url("/assets/joinBkg.png");
 
-        // align-self: flex-end;
+
     }
 
     &_bkg-home{
@@ -128,6 +131,7 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    
 
     // height: 100%;
     margin: $spacing-sm; 
@@ -138,15 +142,16 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        align-items: center;
         flex-wrap: wrap;
 
         // height: 100%;
         margin: $spacing-sm; 
-        margin-top: 10rem;
+        margin-top: 8rem;
 
         &-title{
             // background-color: white;
-            flex: 0 1 420px;
+            flex: 0 1 440px;
             margin: $spacing-lg; 
         }
     }
@@ -155,7 +160,7 @@
         // background-color: white;
         align-self: flex-end;
         margin: $spacing-lg; 
-        margin-top: 6rem;
+        margin-top: 5rem;
 
     }
 

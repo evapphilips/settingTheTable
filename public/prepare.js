@@ -37,6 +37,7 @@ var ans = ["", "", "", "", "", "", ""];
 
 // When completing registration
 // when name is completed
+var nameCheck = false;
 var nameInput = document.getElementById('nameInput')
 nameInput.addEventListener('blur', function (e) {
     // check is name has already been taken
@@ -44,11 +45,14 @@ nameInput.addEventListener('blur', function (e) {
         // if the name is already taken
         if(data.message === "failure"){
             alert("Uh oh! That name has already been used.  Try a different username.");
+            nameCheck = false;
         }else{
+            nameCheck = true;
             // if the name is not taken
             // check is the next button should still be disabled
             if(document.getElementById('tableInput').value !== "" ){
                 document.getElementById("nextBtn").disabled = false;
+                
             }
             return
         }
@@ -67,7 +71,7 @@ tableInput.addEventListener('blur', function (e) {
         }else{
             // if the table exists, get the doc
             prepQuestions = [data.doc.prepQuestion1, data.doc.prepQuestion2, data.doc.prepQuestion3, data.doc.prepQuestion4, data.doc.prepQuestion5, data.doc.prepQuestion6, data.doc.prepQuestion7]
-            if(nameInput.value !== ""){
+            if((nameInput.value !== "") && nameCheck){
                 document.getElementById("nextBtn").disabled = false;
             }
         }
@@ -92,6 +96,8 @@ prevBtn.addEventListener('click', () => {nextPrev(-1);});
 // When submit is pressed, post new user to users collection
 var prepSubmitBtn = document.getElementById("prepSubmitBtn")
 prepSubmitBtn.addEventListener("click", (e) => {
+    // hide back button
+    document.getElementById("prevBtn").style.visibility = "hidden"
     // make a plate svg source
     var html = d3.select(".plateContainer")
         .attr("version", 1.1)
@@ -295,6 +301,8 @@ function showTab(n) {
                         .style("r", q7Symbol[i])
                     // add ans to ans array
                     ans[n-1] = i;
+
+                    document.getElementById("prepSubmitBtn").disabled = false;
                 }
             })
         }
@@ -320,6 +328,7 @@ function showTab(n) {
         // hide next and show submit
         document.getElementById("nextBtn").style.visibility = "hidden"
         document.getElementById("prepSubmitBtn").style.display = "block";
+        document.getElementById("prepSubmitBtn").disabled = true;
     }else {
         // show next and hide submit
         document.getElementById("prepSubmitBtn").style.display = "none";

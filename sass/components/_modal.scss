@@ -8,9 +8,10 @@
     width: 100%;
     height: 100%;
     overflow: auto; /* Enable scroll if needed */
+    // overflow: hidden;
     background-color: rgba(0,0,0,0.4);
     // display: none; /* Hidden by default */
-    // position: fixed; /* Stay in place */
+    position: fixed; /* Stay in place */
     // z-index: 1; /* Sit on top */
     // left: 0;
     // top: 0;
@@ -27,7 +28,7 @@
     align-items: center;
 
     &_content{
-        background-color: whitesmoke;
+        background-color: rgb(253, 253, 253);
         margin: $spacing-sm;
         padding: $spacing-sm;
         width: 80%;

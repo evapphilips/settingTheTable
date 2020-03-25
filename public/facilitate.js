@@ -1,19 +1,7 @@
-
-// // Store user type
-// var type = "facilitator"
-
-
-
 // Variables
 var socket;
 var type = 1; // This client is a facilitator (1)
 var currentSubmission = [];
-
-// When page loads, show login modal
-// window.addEventListener('load', () => {
-//     // show modal
-//     document.getElementById('loginModal').style.display = "block";    
-// })
 
 // Complete login
 var loginBtn = document.getElementById('loginBtn')
@@ -154,44 +142,3 @@ function showContent(container, ques, options, id){
             socket.emit('shareQuestion', id)
         })
 }
-
-
-
-
-
-
-// FROM ORIGINAL CODE, TO DELETE LATER
-
-// // Send over socket
-// // When page first loads, send type
-// window.addEventListener('load', function () {
-//     // send type to the server
-//     socket.emit('sendType', {
-//         id: socket.id,
-//         type: type
-//     })
-// })
-
-// // Send question to participants and screen
-// // get access to button 
-// var sendButton = document.getElementById('sendButton')
-// // when button is pressed
-// sendButton.addEventListener('click', function () {
-//     // access question title
-//     var questionTitle = document.getElementById('questionTitle')
-//     if(questionTitle.innerHTML !== "Facilitator Page"){
-//         // send question to the server
-//         socket.emit('sendQuestion', {
-//             id: socket.id,
-//             question: questionTitle.innerHTML
-//         })
-//     }
-// })
-
-
-
-// // Recieve over socket
-// socket.on('newQuestion', (data) => {
-//     // when you recieve a  question from the server, change the title to that question 
-//     document.getElementById('questionTitle').innerHTML = "Recieved a question: " + data.question;
-// })

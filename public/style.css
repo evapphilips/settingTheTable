@@ -2,7 +2,7 @@
   0% {
     transform: translateY(0); }
   100% {
-    transform: translateY(-5px); } }
+    transform: translateY(-10px); } }
 
 *,
 *::after,
@@ -30,9 +30,10 @@ h1 {
 
 h2 {
   font-family: brevia, sans-serif;
-  font-size: 4.6rem;
+  font-size: 4.8rem;
   line-height: 5rem;
-  color: #1C4F60; }
+  color: #1C4F60;
+  margin-bottom: 1rem; }
 
 h4 {
   font-family: brevia, sans-serif;
@@ -65,7 +66,7 @@ input::placeholder {
   cursor: pointer; }
 
 .btn:hover {
-  background-color: whitesmoke; }
+  background-color: #E8E8E8; }
 
 .btn-secondary {
   border: 2px solid #1C4F60; }
@@ -237,12 +238,14 @@ input::placeholder {
   overflow: auto;
   /* Enable scroll if needed */
   background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  /* Stay in place */
   display: none;
   flex-direction: row;
   justify-content: center;
   align-items: center; }
   .modal_content {
-    background-color: whitesmoke;
+    background-color: #fdfdfd;
     margin: 1rem;
     padding: 1rem;
     width: 80%;
@@ -317,8 +320,8 @@ input::placeholder {
   justify-content: start;
   min-height: 100vh; }
   .container_main_bkg-join {
-    background-size: cover;
-    height: 100vh;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     background-blend-mode: screen;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -382,16 +385,17 @@ input::placeholder {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
     margin: 1rem;
-    margin-top: 10rem; }
+    margin-top: 8rem; }
     .container_home_intro-title {
-      flex: 0 1 420px;
+      flex: 0 1 440px;
       margin: 3rem; }
   .container_home_arrow {
     align-self: flex-end;
     margin: 3rem;
-    margin-top: 6rem; }
+    margin-top: 5rem; }
   .container_home_role {
     margin: 3rem;
     margin-top: 3rem;
@@ -417,36 +421,39 @@ input::placeholder {
         fill: #696969; }
 
 .instruction {
-  flex: 0 1 300px;
+  flex: 0 1 325px;
   margin: 3rem;
+  border-radius: .5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between; }
   .instruction_title {
-    margin-bottom: 1rem; }
+    margin-bottom: 3rem; }
   .instruction_body {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin-left: 1rem; }
+    margin-left: 1rem;
+    margin-top: 1rem; }
   .instruction-icon {
-    height: 2rem;
-    width: 2rem;
+    height: 2.5rem;
+    width: 2.5rem;
     fill: #1C4F60;
     margin-right: 1rem; }
   .instruction_footer {
     align-self: flex-end;
-    margin-top: 3rem; }
+    margin-top: 4rem; }
 
 .arrow-icon {
   height: 6rem;
   width: 6rem;
   fill: #1C4F60;
-  animation: bounce 1s infinite  alternate; }
+  animation: bounce .8s infinite  alternate; }
 
 .role_heading {
-  align-self: center; }
+  align-self: center;
+  margin-bottom: 3rem; }
 
 .role_body {
   display: flex;
