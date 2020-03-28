@@ -18,7 +18,7 @@ loginBtn.addEventListener("click", (e) => {
         fetch('/user/find/' + nameInput.value + "/" + tableInput.value).then(result => result.json()).then(data => {
             // if there is not user/table combo
             if(data.message == "failure"){
-                alert("Uh oh! Either your username or table code are incorrect.  Make sure it input the same credentials you prepared with");
+                alert("Either your username or table code are incorrect.  Make sure to input the same credentials you used to prepare your plate");
             }else{ // if there is a user/table combo
                 // store this user info as the current user
                 currentUser = data.info
@@ -85,7 +85,7 @@ loginBtn.addEventListener("click", (e) => {
                     // hide the submit button 
                     document.getElementById('answerBtn').style.visibility = "hidden"
                     // clear question and remove options
-                    document.getElementById('currentQuestion').innerHTML = "waiting for next question"
+                    document.getElementById('currentQuestion').innerHTML = "waiting for the next question..."
                     // document.getElementById('currentOptions').style.display = "none"
                     var currentOptions = document.getElementsByClassName('currentOptions')
                         // console.log(currentOptions)

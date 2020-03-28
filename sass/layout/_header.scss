@@ -8,10 +8,10 @@
 
     &_element{
         // background-color: coral;
-        padding: $spacing-sm;
+        padding: 2rem;
 
         &-logo{
-            height: 6.25rem;
+            height: 10.25rem;
 
             
         }
@@ -19,7 +19,7 @@
         &-icon{
             height: 4rem;
             width: 4rem;
-            fill: $color-primary-dark;
+            fill: $color-primary;
 
             &:hover{
                 fill: #696969;

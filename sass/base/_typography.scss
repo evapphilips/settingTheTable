@@ -27,6 +27,14 @@ h5{
     color: $color-primary;
 }
 
+h6{
+    font-family: $default-font-primary;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: $color-primary-dark;
+}
+
+
 input::placeholder{
     color: rgb(218, 218, 218);
   }

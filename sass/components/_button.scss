@@ -45,7 +45,26 @@
         border: 2px solid whitesmoke; 
             background-color: whitesmoke;
             color: lightgray;
+        }
     }
+
+    &-tertiary{
+        border-bottom: 2px solid $color-primary;
+        border-radius: 0;
+        text-align: left;
+        padding: .5rem .5rem;
+
+        &:hover{
+            padding: .5rem 1.5rem;
+            background-color: white;
+
+        }
+
+        
+        &:active,
+        &:focus {
+        outline: none;
+        }
     }
 
     &-primary{

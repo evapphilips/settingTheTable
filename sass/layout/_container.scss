@@ -52,7 +52,7 @@
         flex-wrap: wrap;
 
         // height: 100%;
-        margin: $spacing-sm; 
+        // margin: $spacing-sm; 
 }
 
 .container_plate{
@@ -79,12 +79,15 @@
 
     display: flex;
     flex-direction: column;
-    // align-items: flex-start;
+    // align-items: flex-end;
 }
 
 .container_list{
     // background-color: white;
     margin: $spacing-sm; 
+
+    display: flex;
+    flex-direction: column;
 }
 
 .container_pres{
@@ -147,7 +150,7 @@
 
         // height: 100%;
         margin: $spacing-sm; 
-        margin-top: 8rem;
+        margin-top: 6rem;
 
         &-title{
             // background-color: white;

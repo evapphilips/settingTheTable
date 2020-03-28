@@ -17,7 +17,7 @@ nameInput.addEventListener('blur', function (e) {
     fetch('/user/check/' + e.target.value).then(result => result.json()).then(data => {
         // if the name is already taken
         if(data.message === "failure"){
-            alert("Uh oh! That name has already been used.  Try a different username.");
+            alert("Looks like that name has already been taken.  Try a different username.");
             nameCheck = false;
         }else{
             nameCheck = true;
@@ -40,7 +40,7 @@ tableInput.addEventListener('blur', function (e) {
     fetch('/table/check/' + e.target.value).then(result => result.json()).then(data => {
         // if the table does not exist
         if(data.message === "failure"){
-            alert("Uh oh! There are no tables with that code.  Check that you have the correct table code.");
+            alert("There are no tables with that code.  Check that you have the correct table code.");
         }else{
             // if the table exists, get the doc
             prepQuestions = [data.doc.prepQuestion1, data.doc.prepQuestion2, data.doc.prepQuestion3, data.doc.prepQuestion4, data.doc.prepQuestion5, data.doc.prepQuestion6, data.doc.prepQuestion7]
