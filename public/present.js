@@ -9,9 +9,6 @@ var svgW = (window.innerWidth - 20);
 var radius = 20;
 var optNum = 0;
 
-//
-
-
 // Setup socket
  // connect to the socket server
  var socket = io.connect()
@@ -36,7 +33,6 @@ socket.on('checkConnectScr', (data) => {
 var simulation = d3.forceSimulation()
     .force('attract', d3.forceAttract()
         .target(function(d) { 
-            console.log(optNum)
             if(d.target == 0){
                 return [0, 0];
             }else if(d.target === "A"){
@@ -73,16 +69,33 @@ var svg = d3.select('#chart').append('svg')
     .append('g')
     .attr("transform", "translate(0, 0)")
 
+// add defs to this page
+var defs = svg.append('defs')
+
+// add pattern
+defs.append("pattern")
+    .attr("id", "logo-img")
+    .attr("height", "100%")
+    .attr("width", "100%")
+    .attr("patternContentUnits", "objectBoundingBox")
+        .append('image')
+        .attr("height", "1")
+        .attr("width", "1")
+        .attr("preserveAspectRatio", "none")
+        .attr("xmlns:xlink", "http://www.w3.org/1999/xlink")
+        .attr("xlink:href", "assets/logo.png")
+
 // add circles to the svg
 var circles = svg.selectAll('circle')
     .data(nodes)
-    .enter().append('circle')
-        .attr('id', function (d) { return "part" + d.id})
-        .attr('cx', function (d) { return d.x; })
-        .attr('cy', function (d) { return d.y; })
-        .attr('r', function (d) { return d.r; })
+    .enter()
+        .append('circle')
+            .attr('id', function (d) { return "part" + d.id})
+            .attr('cx', function (d) { return d.x; })
+            .attr('cy', function (d) { return d.y; })
+            .attr('r', function (d) { return d.r; })
+            .style("fill", "url(#logo-img)")
 
-    
 // Recieve an _id from a connected participant
 socket.on('shareConnectedPartId', (data) => {
     console.log("recieved a connected user id: ", data);
@@ -107,7 +120,8 @@ socket.on('shareConnectedPartId', (data) => {
         .attr("cx", function(d) {return d.x})
         .attr("cy", function(d) {return d.y})
         .attr('r', function (d) { return d.r; })
-
+        .style("fill", "url(#logo-img)")
+            
     // update circles definition
     circles = svg.selectAll('circle')
     
