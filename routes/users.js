@@ -147,11 +147,11 @@ module.exports = router
 // })
 
 // // Delete one user
-// router.delete('/:id', getUser, async (req, res) => {
-//   try {
-//     await res.user.remove()
-//     res.json({ message: 'Deleted This User' })
-//   } catch(err) {
-//     res.status(500).json({ message: err.message })
-//   }
-// })
+router.delete('/:id', getUser, async (req, res) => {
+  try {
+    await res.user.remove()
+    res.json({ message: 'Deleted This User' })
+  } catch(err) {
+    res.status(500).json({ message: err.message })
+  }
+})
