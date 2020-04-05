@@ -72,7 +72,7 @@ router.get('/find/:id', (req, res) => {
       if(!doc){
         res.json({message: "failure"}) // failure if that user _id does not exist
       }else {
-        res.json({message: "success", src: doc.plateSvg}) // success if that user _id does exist
+        res.json({message: "success", answers: doc.prepAnswers}) // success if that user _id does exist
       }
     }).catch(err => {
       return err

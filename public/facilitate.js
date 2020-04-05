@@ -136,7 +136,7 @@ function showContent(container, ques, options, id){
     var button = detailsRight.append('button')
         .attr("id", id)
         .attr("class", "btn btn-primary btn-primary-highlight")
-        .text("send")
+        .text("share")
         .on("click", () => {
             // when a send button is pressed, tell the server to send a question
             socket.emit('shareQuestion', id)

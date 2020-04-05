@@ -85,7 +85,7 @@ loginBtn.addEventListener("click", (e) => {
                     // hide the submit button 
                     document.getElementById('answerBtn').style.visibility = "hidden"
                     // clear question and remove options
-                    document.getElementById('currentQuestion').innerHTML = "waiting for the next question..."
+                    document.getElementById('currentQuestion').innerHTML = "Waiting for the next question...<br> <h6>Consider submitting a question for the group while you wait.</h6>"
                     // document.getElementById('currentOptions').style.display = "none"
                     var currentOptions = document.getElementsByClassName('currentOptions')
                         // console.log(currentOptions)

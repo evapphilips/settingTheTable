@@ -30,14 +30,14 @@ h1 {
 
 h2 {
   font-family: brevia, sans-serif;
-  font-size: 4.8rem;
+  font-size: 4.2rem;
   line-height: 5rem;
   color: #1C4F60;
   margin-bottom: 1rem; }
 
 h4 {
   font-family: brevia, sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 300;
   color: #7F7F7F; }
 
@@ -51,6 +51,12 @@ h6 {
   font-family: forma-djr-micro, sans-serif;
   font-size: 1.5rem;
   font-weight: 300;
+  color: #7F7F7F; }
+
+h7 {
+  font-family: forma-djr-micro, sans-serif;
+  font-size: 2.0 rem;
+  font-weight: 400;
   color: #7F7F7F; }
 
 input::placeholder {
@@ -101,7 +107,7 @@ input::placeholder {
   border: 2px solid #229A98;
   background-color: #229A98;
   color: #fff;
-  padding: .8rem 3rem; }
+  padding: .8rem 2.5rem; }
   .btn-primary:hover {
     border: 2px solid #1D8684;
     background-color: #1D8684; }
@@ -409,7 +415,7 @@ input::placeholder {
     margin: 1rem;
     margin-top: 6rem; }
     .container_home_intro-title {
-      flex: 0 1 440px;
+      flex: 0 1 470px;
       margin: 3rem; }
   .container_home_arrow {
     align-self: flex-end;

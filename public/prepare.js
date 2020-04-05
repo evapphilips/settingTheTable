@@ -101,6 +101,10 @@ prepSubmitBtn.addEventListener("click", (e) => {
     }).catch(err => {
         return err
     })
+
+    // go to the next thank you tabl
+    nextPrev(1);
+
 })
 
 
@@ -116,11 +120,21 @@ function nextPrev(n){
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + n;
     // if you have reached the end of the form...
-    if (currentTab >= tab.length) {
-        // ... the form gets submitted:
-        document.getElementById("prepForm").submit();
-        return false;
+    // if (currentTab >= tab.length) {
+    //     // ... the form gets submitted:
+    //     document.getElementById("prepForm").submit();
+    //     return false;
+    // }
+
+    if(currentTab == tab.length-1){
+        // console.log("last tab")
+        document.getElementById("prepSubmitBtn").style.display = "none";
+
+        // show username and table code on thank you
+        console.log( "username: name <br> table code: table")
+        document.getElementById('thankUser').innerHTML = "username: " +  document.getElementById('nameInput').value + '<br>' +  "table code: " + document.getElementById('tableInput').value
     }
+
     // Otherwise, display the correct tab:
     showTab(currentTab);
 }
@@ -281,16 +295,24 @@ function showTab(n) {
         // show prev
         document.getElementById("prevBtn").style.visibility = "visible";
     }
-    if (n == (tab.length - 1)) {
+    if (n == (tab.length - 2)) {
         // hide next and show submit
         document.getElementById("nextBtn").style.visibility = "hidden"
         document.getElementById("prepSubmitBtn").style.display = "block";
         document.getElementById("prepSubmitBtn").disabled = true;
-    }else {
-        // show next and hide submit
-        document.getElementById("prepSubmitBtn").style.display = "none";
-        document.getElementById("nextBtn").style.visibility = "visible"
+    }
+    // else {
+    //     // show next and hide submit
+    //     document.getElementById("prepSubmitBtn").style.display = "none";
+    //     document.getElementById("nextBtn").style.visibility = "visible"
         
-      }  
+    // } 
+    // if(n == (tab.length - 1)){
+    //     console.log('hid')
+    //     document.getElementById("nextBtn").style.visibility = "hidden"
+    //     document.getElementById("prevBtn").style.visibility = "hidden";
+    //     // document.getElementById("prepSubmitBtn").style.visibility = "hidden";
+    //     document.getElementById("prepSubmitBtn").style.display = "none";
+    // } 
 }
 
