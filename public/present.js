@@ -68,15 +68,15 @@ var simulation = d3.forceSimulation()
             if(d.target == 0){
                 return [0, 0];
             }else if(d.target === "A"){
-                return [svgW/(optNum + 1), svgH/2];
+                return [svgW/(optNum + 1), svgH/4];
             }else if(d.target === "B"){
-                return [2*svgW/(optNum + 1), svgH/2];
+                return [2*svgW/(optNum + 1), svgH/4];
             }else if(d.target === "C"){
-                return [3*svgW/(optNum + 1), svgH/2];
+                return [3*svgW/(optNum + 1), svgH/4];
             }else if(d.target === "D"){
-                return [4*svgW/(optNum + 1), svgH/2];
+                return [4*svgW/(optNum + 1), svgH/4];
             }else if(d.target === "E"){
-                return [5*svgW/(optNum + 1), svgH/2];
+                return [5*svgW/(optNum + 1), svgH/4];
             }else{
                 return[0, 0];
             }

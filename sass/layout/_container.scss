@@ -24,7 +24,7 @@
 
     &_bkg-home{
         // background-size: cover;
-        background-size: 60% 100%;
+        background-size: 62% 100%;
         background-repeat:no-repeat;
         // height: 100vh;
         // width: 50%;
@@ -111,6 +111,7 @@
     &-card{
         // background-color: cornflowerblue;
         padding: $spacing-sm;
+        height: 80vh;
         // margin: .2rem; 
         box-shadow: 0 .25rem .5rem rgba($color-black, .2);
         border-radius: 1rem;
@@ -140,7 +141,7 @@
     margin: $spacing-sm; 
 
     &_intro{
-        // background-color: white;
+        // background-color: #DDDDEC;
 
         display: flex;
         flex-direction: row;

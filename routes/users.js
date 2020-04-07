@@ -6,14 +6,14 @@ const router = express.Router()
 const User = require('../models/users')
 
 // Get all users
-router.get('/', async (req, res) => {
-  try {
-    const users = await User.find()
-    res.json(users)
-  } catch (err) {
-    res.status(500).json({ message: err.message })
-  }
-})
+// router.get('/', async (req, res) => {
+//   try {
+//     const users = await User.find()
+//     res.json(users)
+//   } catch (err) {
+//     res.status(500).json({ message: err.message })
+//   }
+// })
 
 // Check if a username already exists
 router.get('/check/:name', (req, res) => {
@@ -147,11 +147,11 @@ module.exports = router
 // })
 
 // // Delete one user
-router.delete('/:id', getUser, async (req, res) => {
-  try {
-    await res.user.remove()
-    res.json({ message: 'Deleted This User' })
-  } catch(err) {
-    res.status(500).json({ message: err.message })
-  }
-})
+// router.delete('/:id', getUser, async (req, res) => {
+//   try {
+//     await res.user.remove()
+//     res.json({ message: 'Deleted This User' })
+//   } catch(err) {
+//     res.status(500).json({ message: err.message })
+//   }
+// })

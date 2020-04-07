@@ -54,27 +54,27 @@ async function getTable(req, res, next) {
 
 
 
-  // TO DELETE LATER
-  // Create one table
-router.post('/', async (req, res) => {
-  const table = new Table({
-    ...req.body
-  })
-  try {
-    const newTable = await table.save()
-    // send a success message
-    res.status(201).json({message: "success"})
-  } catch (err) {
-    res.status(400).json({message: err.message})
-  }
-})
+//   // TO DELETE LATER
+//   // Create one table
+// router.post('/', async (req, res) => {
+//   const table = new Table({
+//     ...req.body
+//   })
+//   try {
+//     const newTable = await table.save()
+//     // send a success message
+//     res.status(201).json({message: "success"})
+//   } catch (err) {
+//     res.status(400).json({message: err.message})
+//   }
+// })
 
-// delete one table
-router.delete('/:id', getTable, async (req, res) => {
-  try {
-    await res.table.remove()
-    res.json({ message: 'Deleted This Table' })
-  } catch(err) {
-    res.status(500).json({ message: err.message })
-  }
-})
+// // delete one table
+// router.delete('/:id', getTable, async (req, res) => {
+//   try {
+//     await res.table.remove()
+//     res.json({ message: 'Deleted This Table' })
+//   } catch(err) {
+//     res.status(500).json({ message: err.message })
+//   }
+// })

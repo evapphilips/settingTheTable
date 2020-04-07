@@ -76,11 +76,11 @@ async function getSubmission(req, res, next) {
 
   // TO DELETE LATER
   // // Delete one user
-router.delete('/:id', getSubmission, async (req, res) => {
-  try {
-    await res.submission.remove()
-    res.json({ message: 'Deleted This submission' })
-  } catch(err) {
-    res.status(500).json({ message: err.message })
-  }
-})
+// router.delete('/:id', getSubmission, async (req, res) => {
+//   try {
+//     await res.submission.remove()
+//     res.json({ message: 'Deleted This submission' })
+//   } catch(err) {
+//     res.status(500).json({ message: err.message })
+//   }
+// })
