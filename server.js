@@ -44,6 +44,21 @@ const server = app.listen(PORT, function () {
     console.log("Server is running")
 });
 
+var timerID = 0; 
+function keepAlive() { 
+    var timeout = 100;  
+    if (socket.readyState == socket.OPEN) {  
+        socket.send('');  
+    }  
+    timerId = setTimeout(keepAlive, timeout);  
+}  
+function cancelKeepAlive() {  
+    if (timerId) {  
+        clearTimeout(timerId);  
+    }  
+}
+
+
 // App socket setup (backend)
 var io = socket(server);
 var connectedPartsId = []; // keep a list of the participants _id who are connected

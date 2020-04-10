@@ -68,15 +68,15 @@ var simulation = d3.forceSimulation()
             if(d.target == 0){
                 return [0, 0];
             }else if(d.target === "A"){
-                return [svgW/(optNum + 1), svgH/4];
+                return [svgW/(optNum + 1) - (radius/2), (svgH/2) - (radius/2)];
             }else if(d.target === "B"){
-                return [2*svgW/(optNum + 1), svgH/4];
+                return [2*svgW/(optNum + 1) - (radius/2), (svgH/2) - (radius/2)];
             }else if(d.target === "C"){
-                return [3*svgW/(optNum + 1), svgH/4];
+                return [3*svgW/(optNum + 1)- (radius/2), (svgH/2) - (radius/2)];
             }else if(d.target === "D"){
-                return [4*svgW/(optNum + 1), svgH/4];
+                return [4*svgW/(optNum + 1) - (radius/2), (svgH/2) - (radius/2)];
             }else if(d.target === "E"){
-                return [5*svgW/(optNum + 1), svgH/4];
+                return [5*svgW/(optNum + 1) - (radius/2), (svgH/2) - (radius/2)];
             }else{
                 return[0, 0];
             }
@@ -160,7 +160,7 @@ var plateSvg = plateDiv.append('svg')
 
 // Recieve an _id from a connected participant
 socket.on('shareConnectedPartId', (data) => {
-    console.log("recieved a connected user id: ", data);
+    // console.log("recieved a connected user id: ", data);
 
     // add new connected participant to connectedUsers array
     connectedUsers.push(data)
@@ -170,7 +170,7 @@ socket.on('shareConnectedPartId', (data) => {
     var answers = [];
     fetch('/user/find/' + data).then(result => result.json()).then(d => {
         d.answers.forEach((ans) => {
-            console.log("a", ans)
+            // console.log("a", ans)
             answers.push(ans)
         })
     }).then(() => {
@@ -458,7 +458,7 @@ socket.on('shareConnectedPartId', (data) => {
 
 // Recieve an _id from a disconnected participant
 socket.on('shareDisconnectedPartId' ,(data) => {
-    console.log("recieved a disconnected user id: ", data)
+    // console.log("recieved a disconnected user id: ", data)
 
     if(connectedUsers.indexOf(data) >= 0){
         // get index
@@ -468,7 +468,7 @@ socket.on('shareDisconnectedPartId' ,(data) => {
     connectedUsers.splice(index, 1)
 
     // remove from circles
-    console.log('#part' + data)
+    // console.log('#part' + data)
     d3.select('#part' + data)
         .remove()
 
@@ -485,7 +485,7 @@ socket.on('shareDisconnectedPartId' ,(data) => {
 
 // Recieved an _id and answer from a connected participant
 socket.on('newAnswerShared', (data) => {
-    console.log("Recieved answer " + data.currentAnswer + " from user: " + data._id)
+    // console.log("Recieved answer " + data.currentAnswer + " from user: " + data._id)
 
     nodes[connectedUsers.indexOf(data._id)].target = data.currentAnswer
 
@@ -527,9 +527,8 @@ socket.on('changeCurrentQuestion', (data) => {
                 option.style.display = "inline-block"
                 tick.style.display = "inline-block"
                 option.innerText = d.question[i];
-                console.log("hi")
                 optNum ++
-                console.log(optNum)
+                // console.log(optNum)
             }else{
                 var id_o  = "o" + i;
                 var id_a = "a" + i;
