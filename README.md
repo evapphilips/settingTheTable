@@ -8,4 +8,4 @@ To learn more and explore our tutorials and resources, visit the [Setting The Ta
 
 This project was developed as part of a masters thesis for the Interactive Telecommunications Program (ITP) at NYU.  To learn more about the project view the [ITP 2020 Thesis Archive](). <-- coming soon!
 
-Setting The Table uses Heroku, MongoDB, D3.js to amplify the experience.
+###### Setting The Table uses Heroku, MongoDB, D3.js to amplify the experience.
