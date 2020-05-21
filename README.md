@@ -6,6 +6,6 @@
 
 To learn more and explore our tutorials and resources, visit the [Setting The Table Wiki](https://www.notion.so/Setting-The-Table-Wiki-9e19bcb2028e41d3a0f5c07cf655566e).
 
-This project was developed as part of a masters thesis for the Interactive Telecommunications Program (ITP) at NYU.  To learn more about the project view the [ITP 2020 Thesis Archive](). <-- coming soon!
+This project was developed as part of a masters thesis for the Interactive Telecommunications Program (ITP) at NYU.  To learn more about the project view the [ITP 2020 Thesis Archive](https://itp.nyu.edu/thesis2020/students/eva-p-philips). 
 
 ###### Setting The Table uses Heroku, MongoDB, D3.js to amplify the experience.
